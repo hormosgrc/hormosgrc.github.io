@@ -220,7 +220,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     tagline: 'REGISTRE o SGSI. Gratuita, sem prazo e sem teto de usuários — o time inteiro opera.',
     price: 'R$ 0',
     period: 'para sempre, sem renovação',
-    frameworkScope: ['ISO/IEC 27001', 'LGPD'],
+    frameworkScope: ['ISO/IEC 27001'],
     features: [
       'Registro completo e estruturado do SGSI',
       'Usuários ilimitados — o time inteiro opera',
@@ -239,7 +239,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       'Sem análise de GAP consolidada',
       'Consulta aos logs de auditoria requer licença (a gravação nunca para)',
       'Sem exportação em CSV',
-      'Escopo normativo: ISO 27001 e LGPD',
+      'Escopo normativo: apenas ISO 27001 — LGPD a partir do Essencial',
     ],
     ctaLabel: 'Começar Grátis Agora',
     ctaAction: 'community',
@@ -255,6 +255,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     frameworkScope: ['ISO/IEC 27001', 'CIS Controls v8', 'LGPD'],
     features: [
       'Tudo do plano Comunidade',
+      'Módulo LGPD completo — RoPA, bases legais, prazos da ANPD e Encarregado',
       'Múltiplos administradores e perfis com RBAC',
       'Motor semântico e Analista IA local (zero vazamento de dados)',
       'Leitura automática de evidências (OCR) e correlação com controles',
