@@ -334,7 +334,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
   };
 
   const handleCopyDocker = () => {
-    navigator.clipboard.writeText('git clone https://github.com/tracado/tracado.git && cd tracado && ./install.sh');
+    navigator.clipboard.writeText('git clone https://github.com/hormosgrc/hormos.git && cd hormos && ./install.sh');
     setCopiedDocker(true);
     setTimeout(() => setCopiedDocker(false), 2000);
   };
@@ -383,7 +383,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                 </button>
               </div>
               <pre className="p-3 bg-black/60 rounded-xl text-xs font-mono text-blue-300 overflow-x-auto border border-white/5">
-                git clone https://github.com/tracado/tracado.git &amp;&amp; cd tracado &amp;&amp; ./install.sh
+                git clone https://github.com/hormosgrc/hormos.git &amp;&amp; cd hormos &amp;&amp; ./install.sh
               </pre>
             </div>
 

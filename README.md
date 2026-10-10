@@ -3,7 +3,7 @@
 Site institucional do **Hormos** — appliance de GRC auto-hospedado para
 ISO/IEC 27001, LGPD, CIS Controls, NIST CSF, COBIT 2019 e ISO 42001.
 
-O produto em si vive em **[tracado/tracado](https://github.com/tracado/tracado)**.
+O produto em si vive em **[hormosgrc/hormos](https://github.com/hormosgrc/hormos)**.
 Este repositório contém **apenas a página pública**: nenhum código do appliance,
 do portal ou do licenciador está aqui.
 
