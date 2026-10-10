@@ -148,7 +148,7 @@ declare global {
 
 /** Chave PÚBLICA do Web3Forms — por desenho ela fica no código do navegador.
  *  Identifica para qual caixa de entrada o contato vai; não dá acesso a nada. */
-const WEB3FORMS_KEY = '6b6fa9cc-3cde-4ffc-be29-c5728ac1e12c';
+const WEB3FORMS_KEY = '79b0d33f-7c32-47d9-9567-14abab6fa41c';
 
 const buildInitialFormData = (initialPlan?: string) => ({
   name: '',
