@@ -435,7 +435,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                   Seu contato não se perdeu — escreva direto para{' '}
                   <a
                     className="underline font-semibold"
-                    href={`mailto:tracadogrc@gmail.com?subject=${encodeURIComponent(
+                    href={`mailto:hormosgrc@gmail.com?subject=${encodeURIComponent(
                       `Hormos — contato de ${formData.name || 'novo interessado'}`,
                     )}&body=${encodeURIComponent(
                       [
@@ -448,7 +448,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                       ].filter(Boolean).join('\n'),
                     )}`}
                   >
-                    tracadogrc@gmail.com
+                    hormosgrc@gmail.com
                   </a>{' '}
                   — o e-mail já vai preenchido com o que você digitou.
                 </p>

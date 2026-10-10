@@ -7,7 +7,7 @@ compatibility_date = "2026-09-01"
 ORIGENS_PERMITIDAS = "https://tracado.pages.dev,http://localhost:3000"
 # Enquanto não houver domínio verificado no Resend, use o remetente de teste.
 REMETENTE = "Hormos <onboarding@resend.dev>"
-DESTINATARIO = "tracadogrc@gmail.com"
+DESTINATARIO = "hormosgrc@gmail.com"
 
 # RESEND_API_KEY NÃO vai aqui — é secret:
 #   wrangler secret put RESEND_API_KEY

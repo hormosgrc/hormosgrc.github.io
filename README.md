@@ -7,7 +7,7 @@ O produto em si vive em **[tracado/tracado](https://github.com/tracado/tracado)*
 Este repositório contém **apenas a página pública**: nenhum código do appliance,
 do portal ou do licenciador está aqui.
 
-Publicado em **<https://tracado.github.io/>**.
+Publicado em **<https://hormosgrc.github.io/>**.
 
 ## Como rodar
 

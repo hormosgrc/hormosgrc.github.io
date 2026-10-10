@@ -5,9 +5,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // O site é publicado na raiz de https://tracado.github.io/, então os caminhos
+  // O site é publicado na raiz de https://hormosgrc.github.io/, então os caminhos
   // dos arquivos gerados podem ser absolutos. Se um dia ele passar a viver num
-  // subcaminho (…/tracado/, por exemplo), esta é a única linha a mudar.
+  // subcaminho (…/hormosgrc/, por exemplo), esta é a única linha a mudar.
   base: '/',
   resolve: {
     alias: {

@@ -44,7 +44,7 @@ export const InteractiveAppPreview: React.FC = () => {
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
           </div>
           <span className="ml-3 font-mono text-[11px] text-slate-400 hidden sm:inline">
-            app.tracado.local / <span className="text-blue-400">instância: on-premise-9DBEFA</span>
+            app.hormos.local / <span className="text-blue-400">instância: on-premise-9DBEFA</span>
           </span>
         </div>
 
