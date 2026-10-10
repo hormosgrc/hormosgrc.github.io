@@ -100,7 +100,7 @@ export const MultiFrameworkSection: React.FC = () => {
             ISO 27001 como Hub Central. As demais normas como Lentes Vivas.
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-            Esqueça o preenchimento redundante de questionários. No Traçado, uma única evidência comprovada no Anexo A da ISO propaga conformidade automaticamente para as normas correspondentes.
+            Esqueça o preenchimento redundante de questionários. No Hormos, uma única evidência comprovada no Anexo A da ISO propaga conformidade automaticamente para as normas correspondentes.
           </p>
         </div>
 

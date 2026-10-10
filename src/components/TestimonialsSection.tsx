@@ -18,7 +18,7 @@ export const TestimonialsSection: React.FC = () => {
             Aprovado por CISOs, DPOs e Auditores Líderes
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-            Veja a experiência de quem substituiu o caos das planilhas pelo motor em grafo do Traçado com mentoria especializada.
+            Veja a experiência de quem substituiu o caos das planilhas pelo motor em grafo do Hormos com mentoria especializada.
           </p>
         </div>
 

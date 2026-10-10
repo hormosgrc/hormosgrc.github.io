@@ -47,7 +47,7 @@ export const AuditorMentorshipSection: React.FC<AuditorMentorshipSectionProps> =
             </div>
             <h3 className="text-base font-bold text-white">Diagnóstico & Setup do SGSI</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              O auditor líder mapeia seu contexto (Cl. 4), ativos primários e de suporte, e calibra a matriz de riscos e apetite diretamente no Traçado.
+              O auditor líder mapeia seu contexto (Cl. 4), ativos primários e de suporte, e calibra a matriz de riscos e apetite diretamente no Hormos.
             </p>
           </div>
 

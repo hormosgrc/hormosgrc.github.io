@@ -24,12 +24,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
             <div className="flex items-center gap-3">
               <Marca tamanho={38} className="shrink-0" />
               <div>
-                <span className="marca-nome text-xl text-white">Traçado</span>
+                <span className="marca-nome text-xl text-white">Hormos</span>
                 <span className="text-[10px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 ml-2 font-mono">
                   GRC Hub
                 </span>
               </div>
             </div>
+
+            {/* O significado do nome. Fica junto da marca de propósito: quem vê o
+                símbolo — um fio com duas contas — lê aqui por que ele é esse. */}
+            <p className="text-slate-400 leading-relaxed max-w-sm text-xs border-l-2 border-blue-500/30 pl-3">
+              <span className="text-slate-200 font-medium">ὅρμος</span>{' '}
+              <span className="text-slate-500">(hórmos)</span>, do grego: o ancoradouro
+              abrigado onde o navio para no meio da viagem — e também o colar, contas
+              presas num mesmo fio. É o que o produto é: a parada segura entre{' '}
+              <span className="text-slate-300">querer a certificação e tê-la</span>, com
+              controle, risco e evidência num fio só.
+            </p>
 
             <p className="text-slate-400 leading-relaxed max-w-sm text-xs">
               A suíte de Governança, Riscos e Conformidade que pensa em Grafo Vivo de Causa e Efeito. Inteligência Artificial local, herança multi-norma e acompanhamento por Auditores Líderes ISO 27001.
@@ -91,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
           <div>
-            © {new Date().getFullYear()} Traçado GRC. Todos os direitos reservados.
+            © {new Date().getFullYear()} Hormos GRC. Todos os direitos reservados.
           </div>
 
           <div className="flex items-center gap-6">

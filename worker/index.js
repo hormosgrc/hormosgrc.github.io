@@ -1,10 +1,10 @@
 /**
- * Traçado — recebedor do formulário de contato da landing page.
+ * Hormos — recebedor do formulário de contato da landing page.
  *
  * Existe por um motivo de segurança: a landing page é estática, então tudo que
  * estiver no JavaScript dela é público — qualquer pessoa lê com Ctrl+U. Uma
  * credencial de e-mail ali seria extraída em segundos e usada para disparar
- * phishing com o remetente do Traçado. Aqui a chave vive como secret do Worker,
+ * phishing com o remetente do Hormos. Aqui a chave vive como secret do Worker,
  * no servidor, e nunca chega ao navegador.
  */
 
@@ -61,7 +61,7 @@ export default {
     const pais = request.headers.get('CF-IPCountry') || '—';
 
     const html = `
-      <h2>Novo contato pela landing page do Traçado</h2>
+      <h2>Novo contato pela landing page do Hormos</h2>
       <table cellpadding="6" style="border-collapse:collapse;font-family:system-ui,sans-serif;font-size:14px">
         <tr><td><b>Nome</b></td><td>${esc(nome)}</td></tr>
         <tr><td><b>E-mail</b></td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
@@ -80,7 +80,7 @@ export default {
         from: env.REMETENTE,
         to: [env.DESTINATARIO],
         reply_to: email,
-        subject: `Traçado — contato de ${nome}${empresa ? ` (${empresa})` : ''}`,
+        subject: `Hormos — contato de ${nome}${empresa ? ` (${empresa})` : ''}`,
         html,
       }),
     });

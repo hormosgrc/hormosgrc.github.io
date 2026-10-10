@@ -150,7 +150,7 @@ export const LicensingSection: React.FC<LicensingSectionProps> = ({ onSelectPlan
             Boleto, Pix ou cartão, com possibilidade de parcelamento. A negociação é direta
             conosco — <strong className="text-slate-300">a cobrança não acontece na plataforma</strong>.
             Como o licenciamento é por versão, e não assinatura, a transação é única:{' '}
-            <strong className="text-slate-300">nenhum dado de cartão passa pelo Traçado nem fica armazenado</strong>.
+            <strong className="text-slate-300">nenhum dado de cartão passa pelo Hormos nem fica armazenado</strong>.
           </span>
         </div>
 

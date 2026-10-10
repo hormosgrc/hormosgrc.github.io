@@ -26,7 +26,7 @@ export const FaqSection: React.FC<FaqProps> = ({ onOpenDemo }) => {
             <span>PERGUNTAS FREQUENTES</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Dúvidas comuns sobre o Traçado e a Mentoria
+            Dúvidas comuns sobre o Hormos e a Mentoria
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
             Respostas diretas sobre arquitetura on-premise, herança multi-norma, auditorias e licenciamento.

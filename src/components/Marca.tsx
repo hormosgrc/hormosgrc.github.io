@@ -1,5 +1,5 @@
 /**
- * O símbolo do Traçado.
+ * O símbolo do Hormos.
  *
  * Geometria medida na arte aprovada (marca/medicao/) e redesenhada em vetor:
  * três retas e dois círculos. Sem degradê e sem brilho — assim ela sobrevive
@@ -39,9 +39,9 @@ export const Marca: React.FC<MarcaProps> = ({ tamanho = 36, mono = false, classN
       viewBox="0 0 64 64"
       className={className}
       role="img"
-      aria-label="Traçado"
+      aria-label="Hormos"
     >
-      <title>Traçado</title>
+      <title>Hormos</title>
       {TRACOS.map((d) => (
         <path
           key={d}

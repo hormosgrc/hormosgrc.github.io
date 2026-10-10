@@ -55,7 +55,7 @@ export const InteractiveGapSimulator: React.FC<SimulatorProps> = ({ onOpenDemo }
             Simule a economia de tempo e eliminação de retrabalho do seu SGSI
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-            Descubra quantas horas sua equipe de segurança deixará de perder com preenchimento manual redundante ao migrar para o motor em grafo do Traçado.
+            Descubra quantas horas sua equipe de segurança deixará de perder com preenchimento manual redundante ao migrar para o motor em grafo do Hormos.
           </p>
         </div>
 
@@ -210,10 +210,10 @@ export const InteractiveGapSimulator: React.FC<SimulatorProps> = ({ onOpenDemo }
             <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-3">
               <div className="text-xs font-bold text-white flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Recomendação de Arquitetura Traçado para seu caso:</span>
+                <span>Recomendação de Arquitetura Hormos para seu caso:</span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Com base no seu perfil ({frameworkCount} normas ativas e equipe de {teamSize} pessoas), recomendamos o plano <strong className="text-blue-300">Traçado {frameworkCount > 3 ? 'Avançado' : 'Essencial'}</strong> com acompanhamento de Auditor Líder nos ciclos de auditoria interna.
+                Com base no seu perfil ({frameworkCount} normas ativas e equipe de {teamSize} pessoas), recomendamos o plano <strong className="text-blue-300">Hormos {frameworkCount > 3 ? 'Avançado' : 'Essencial'}</strong> com acompanhamento de Auditor Líder nos ciclos de auditoria interna.
               </p>
             </div>
 

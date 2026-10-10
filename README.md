@@ -1,6 +1,6 @@
-# Página do Traçado
+# Página do Hormos
 
-Site institucional do **Traçado** — appliance de GRC auto-hospedado para
+Site institucional do **Hormos** — appliance de GRC auto-hospedado para
 ISO/IEC 27001, LGPD, CIS Controls, NIST CSF, COBIT 2019 e ISO 42001.
 
 O produto em si vive em **[tracado/tracado](https://github.com/tracado/tracado)**.
@@ -57,4 +57,4 @@ React 19 · TypeScript · Vite 6 · Tailwind CSS 4 · lucide-react
 
 ## Licença
 
-Conteúdo e marca do Traçado. Todos os direitos reservados.
+Conteúdo e marca do Hormos. Todos os direitos reservados.

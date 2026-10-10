@@ -75,7 +75,7 @@ export const InteractiveAppPreview: React.FC = () => {
               </div>
               <div className="overflow-hidden">
                 <div className="font-bold text-xs text-white truncate">Minha Empresa S.A.</div>
-                <div className="text-[10px] text-slate-400 font-mono truncate">Traçado • ISO 27001 • CIS • NIST</div>
+                <div className="text-[10px] text-slate-400 font-mono truncate">Hormos • ISO 27001 • CIS • NIST</div>
               </div>
             </div>
 
@@ -192,7 +192,7 @@ export const InteractiveAppPreview: React.FC = () => {
 
           {/* Footer watermark inside mockup */}
           <div className="pt-4 border-t border-slate-800/80 text-[10px] text-slate-500 flex items-center justify-between">
-            <span className="font-mono">Traçado v2.1.0</span>
+            <span className="font-mono">Hormos v2.1.0</span>
             <span className="text-emerald-500 flex items-center gap-1 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               On-Premise Ativo
@@ -369,7 +369,7 @@ export const InteractiveAppPreview: React.FC = () => {
                 </p>
               </div>
 
-              {/* Banner Filosofia Traçado */}
+              {/* Banner Filosofia Hormos */}
               <div className="p-3 rounded-xl bg-blue-950/40 border border-blue-800/60 text-xs text-blue-200 flex items-start gap-2.5">
                 <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
                 <span>
@@ -538,10 +538,10 @@ export const InteractiveAppPreview: React.FC = () => {
               <div className="pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                    O DIFERENCIAL TRAÇADO
+                    O DIFERENCIAL HORMOS
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-white mt-1">Como o Traçado pensa: O Grafo de Causa e Efeito</h3>
+                <h3 className="text-lg font-bold text-white mt-1">Como o Hormos pensa: O Grafo de Causa e Efeito</h3>
                 <p className="text-xs text-slate-400">
                   O produto é um grafo de 9 nós, não um amontoado de telas soltas. Você <strong>nunca digita a mesma informação duas vezes</strong>.
                 </p>

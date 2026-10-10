@@ -90,7 +90,7 @@ export const GRAPH_STEPS_DATA: GraphNodeStep[] = [
     step: 2,
     title: 'Ativos de Informação',
     normReference: 'ISO/IEC 27001 A.5.9 · ISO 27005',
-    description: 'O Traçado separa ativo PRIMÁRIO (processo, serviço, informação que gera valor de negócio) de ativo de SUPORTE (nuvem, banco, pessoas, instalações).',
+    description: 'O Hormos separa ativo PRIMÁRIO (processo, serviço, informação que gera valor de negócio) de ativo de SUPORTE (nuvem, banco, pessoas, instalações).',
     input: 'O contexto: as partes interessadas que exigem cada ativo.',
     output: 'Riscos sobre o ativo. Atividades de tratamento de dados pessoais (RoPA). Cenários de continuidade com RTO e RPO. Índice de saúde do ativo.',
     commonMarketMistake: 'Inventariar apenas ativos de TI (servidores e laptops). Um SGSI que não enxerga processos e informações como ativos primários é reprovado na ISO 27001.',
@@ -113,14 +113,14 @@ export const GRAPH_STEPS_DATA: GraphNodeStep[] = [
     description: 'A lista dos 93 controles com a decisão formal da organização sobre cada um: aplicável ou não, estágio de implementação e o que comprova.',
     input: 'Os riscos identificados que justificam por que um controle é necessário.',
     output: 'A fila de GAP priorizada. O Índice de Segurança Aplicada. O roteiro da auditoria interna gerado a partir do que foi declarado.',
-    commonMarketMistake: 'Excluir controle sem justificativa documentada. A 6.1.3(d) exige justificativa técnica formal. O Traçado bloqueia exclusão em branco.',
+    commonMarketMistake: 'Excluir controle sem justificativa documentada. A 6.1.3(d) exige justificativa técnica formal. O Hormos bloqueia exclusão em branco.',
     iconName: 'FileCheck',
   },
   {
     step: 5,
     title: 'Políticas & Evidências Operacionais',
     normReference: 'ISO/IEC 27001 Cl. 7.5 · A.5.1 · A.5.37',
-    description: 'Política é o que a organização DIZ que faz; evidência é o que PROVA que faz. O Traçado trata de forma distinta e correlaciona automaticamente.',
+    description: 'Política é o que a organização DIZ que faz; evidência é o que PROVA que faz. O Hormos trata de forma distinta e correlaciona automaticamente.',
     input: 'Arquivos de políticas e coletas de evidências com periodicidade.',
     output: 'Cobertura documental e operacional do SOA. Herança para os outros frameworks: a mesma evidência conta em ISO, CIS, NIST e LGPD.',
     commonMarketMistake: 'Confundir política com implementação. Documento assinado não é controle rodando. Evidência vencida deixa de contar como cobertura.',
@@ -294,7 +294,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'enterprise_mentoria',
     name: 'Enterprise + Mentoria de Auditores',
-    tagline: 'A ferramenta Traçado + Acompanhamento por Auditores Líderes ISO 27001 Certificados.',
+    tagline: 'A ferramenta Hormos + Acompanhamento por Auditores Líderes ISO 27001 Certificados.',
     price: 'Solução Sob Medida',
     period: 'licença inclusa nos 3 anos de mentoria',
     highlightBadge: 'SUITE + CONSULTORIA',
@@ -387,7 +387,7 @@ export const TESTIMONIALS_DATA = [
     author: 'Renato F. Albuquerque',
     role: 'CISO & DPO',
     company: 'Fintech de Meios de Pagamento (B3 / BACEN)',
-    text: 'O Traçado resolveu a maior mentira do mercado de GRC: a planilha de 80 abas onde a equipe copia e cola a mesma evidência para ISO 27001, CIS e LGPD. Com o motor em grafo, preenchemos uma vez e temos auditoria contínua.',
+    text: 'O Hormos resolveu a maior mentira do mercado de GRC: a planilha de 80 abas onde a equipe copia e cola a mesma evidência para ISO 27001, CIS e LGPD. Com o motor em grafo, preenchemos uma vez e temos auditoria contínua.',
     highlight: 'Auditoria de certificação ISO 27001 sem nenhuma Não Conformidade Maior.',
     score: '100% On-Premise',
   },
@@ -403,7 +403,7 @@ export const TESTIMONIALS_DATA = [
     author: 'Carlos Eduardo Silveira',
     role: 'Lead Auditor ISO/IEC 27001 & Consultor Master',
     company: 'Auditoria e Consultoria Especializada',
-    text: 'Acompanhar clientes usando o Traçado é outro nível de produtividade. Quando pergunto "de onde veio esse controle?", a cadeia de causa e efeito me mostra instantaneamente a parte interessada, o ativo e o risco aprovado pela diretoria.',
+    text: 'Acompanhar clientes usando o Hormos é outro nível de produtividade. Quando pergunto "de onde veio esse controle?", a cadeia de causa e efeito me mostra instantaneamente a parte interessada, o ativo e o risco aprovado pela diretoria.',
     highlight: 'Rastreabilidade perfeita de ponta a ponta da norma.',
     score: 'Cadeia de Causa e Efeito',
   },
@@ -411,16 +411,16 @@ export const TESTIMONIALS_DATA = [
 
 export const FAQ_DATA = [
   {
-    question: 'Por que o Traçado afirma que o SGSI deve ser um Grafo e não um conjunto de telas ou planilhas?',
-    answer: 'Na norma ISO 27001 e nos principais frameworks de segurança, nada existe de forma isolada. Uma exigência de cliente ou regulador gera um objetivo de negócio; esse objetivo depende de um ativo primário; esse ativo possui riscos; os riscos exigem controles; os controles exigem políticas e evidências; falhas geram incidentes que viram não conformidades com causa raiz e planos de ação. O Traçado estrutura tudo isso como um grafo vivo para que você nunca digite a mesma informação duas vezes e tenha rastreabilidade total perante qualquer auditor.',
+    question: 'Por que o Hormos afirma que o SGSI deve ser um Grafo e não um conjunto de telas ou planilhas?',
+    answer: 'Na norma ISO 27001 e nos principais frameworks de segurança, nada existe de forma isolada. Uma exigência de cliente ou regulador gera um objetivo de negócio; esse objetivo depende de um ativo primário; esse ativo possui riscos; os riscos exigem controles; os controles exigem políticas e evidências; falhas geram incidentes que viram não conformidades com causa raiz e planos de ação. O Hormos estrutura tudo isso como um grafo vivo para que você nunca digite a mesma informação duas vezes e tenha rastreabilidade total perante qualquer auditor.',
   },
   {
     question: 'Como funciona a Inteligência Artificial local? Meus dados confidenciais saem da rede da empresa?',
-    answer: 'NÃO. A inteligência artificial do Traçado roda como um motor embarcado diretamente no servidor da sua organização (on-premise ou appliance virtual). Nenhum documento, evidência ou registro de risco sai da sua infraestrutura. Além disso, a IA é determinística e baseada no princípio "A IA sugere, o especialista humano confirma" — sem alucinações e com auditoria completa de cada recomendação.',
+    answer: 'NÃO. A inteligência artificial do Hormos roda como um motor embarcado diretamente no servidor da sua organização (on-premise ou appliance virtual). Nenhum documento, evidência ou registro de risco sai da sua infraestrutura. Além disso, a IA é determinística e baseada no princípio "A IA sugere, o especialista humano confirma" — sem alucinações e com auditoria completa de cada recomendação.',
   },
   {
     question: 'Como funciona a herança de evidências entre diferentes frameworks (ISO 27001, CIS, NIST, COBIT, LGPD)?',
-    answer: 'A ISO 27001 (com sua Declaração de Aplicabilidade SOA) atua como o hub central. Ao cadastrar uma política ou evidência operacional para um controle da ISO (como Controle de Acesso A.5.15), o motor de correlação do Traçado mapeia e pontua automaticamente os controles correspondentes no CIS Controls v8, NIST CSF 2.0, COBIT 2019 e LGPD. Você comprova conformidade em múltiplos frameworks sem retrabalho.',
+    answer: 'A ISO 27001 (com sua Declaração de Aplicabilidade SOA) atua como o hub central. Ao cadastrar uma política ou evidência operacional para um controle da ISO (como Controle de Acesso A.5.15), o motor de correlação do Hormos mapeia e pontua automaticamente os controles correspondentes no CIS Controls v8, NIST CSF 2.0, COBIT 2019 e LGPD. Você comprova conformidade em múltiplos frameworks sem retrabalho.',
   },
   {
     question: 'O licenciamento é por assinatura mensal?',
@@ -435,7 +435,7 @@ export const FAQ_DATA = [
     answer: 'Além da plataforma tecnológica, oferecemos o plano Enterprise com mentoria consultiva contínua realizada por Auditores Líderes ISO/IEC 27001, CISA e DPOs experientes. Eles realizam diagnósticos periódicos, conduzem suas auditorias internas obrigatórias (Cláusula 9.2), treinam sua equipe e garantem que sua organização chegue preparada e segura para a certificação oficial com órgãos certificadores (como BSI, Bureau Veritas, DNV, TÜV, etc.).',
   },
   {
-    question: 'Quais são os requisitos de instalação para rodar o Traçado?',
-    answer: 'O Traçado pode ser executado em qualquer servidor Linux (Ubuntu/Debian/RHEL), Docker, Kubernetes ou como máquina virtual pré-configurada (OVA). Possui suporte a autenticação corporativa Single Sign-On (Keycloak, Azure AD / Entra ID, Okta via SAML/OIDC) e banco de dados isolado.',
+    question: 'Quais são os requisitos de instalação para rodar o Hormos?',
+    answer: 'O Hormos pode ser executado em qualquer servidor Linux (Ubuntu/Debian/RHEL), Docker, Kubernetes ou como máquina virtual pré-configurada (OVA). Possui suporte a autenticação corporativa Single Sign-On (Keycloak, Azure AD / Entra ID, Okta via SAML/OIDC) e banco de dados isolado.',
   },
 ];

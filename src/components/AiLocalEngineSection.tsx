@@ -75,7 +75,7 @@ export const AiLocalEngineSection: React.FC = () => {
             </div>
             <h3 className="text-base font-bold text-white">100% On-Premise / Edge AI</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              O motor de linguagem e indexação semântica é empacotado dentro do appliance do Traçado. Pode operar até em ambientes estritamente isolados (Air-Gapped).
+              O motor de linguagem e indexação semântica é empacotado dentro do appliance do Hormos. Pode operar até em ambientes estritamente isolados (Air-Gapped).
             </p>
           </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { WhyTracado } from './components/WhyTracado';
+import { WhyHormos } from './components/WhyHormos';
 import { GraphEngineSection } from './components/GraphEngineSection';
 import { MultiFrameworkSection } from './components/MultiFrameworkSection';
 import { AiLocalEngineSection } from './components/AiLocalEngineSection';
@@ -54,10 +54,10 @@ export const App: React.FC = () => {
           onOpenCommunityModal={handleOpenCommunity}
         />
 
-        {/* 2. Contrast: Legacy Spreadsheets vs Traçado & 3 Inviolable Principles */}
-        <WhyTracado />
+        {/* 2. Contrast: Legacy Spreadsheets vs Hormos & 3 Inviolable Principles */}
+        <WhyHormos />
 
-        {/* 3. The 9-step Graph of Cause & Effect (Como o Traçado Pensa) */}
+        {/* 3. The 9-step Graph of Cause & Effect (Como o Hormos Pensa) */}
         <GraphEngineSection />
 
         {/* 4. Multi-Framework Architecture & Interactive Cross-Inheritance */}

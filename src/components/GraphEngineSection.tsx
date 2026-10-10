@@ -51,7 +51,7 @@ export const GraphEngineSection: React.FC = () => {
             <span>MOTOR DE GRAFO SGSI</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Como o Traçado Pensa: A Cadeia de Causa e Efeito
+            Como o Hormos Pensa: A Cadeia de Causa e Efeito
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
             Um SGSI não é uma pilha estática de documentos Word ou planilhas. É uma <strong className="text-white">cadeia contínua</strong> que precisa ficar de pé na frente de qualquer auditor internacional.

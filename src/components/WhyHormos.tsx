@@ -15,9 +15,9 @@ import {
   FileSpreadsheet
 } from 'lucide-react';
 
-export const WhyTracado: React.FC = () => {
+export const WhyHormos: React.FC = () => {
   return (
-    <section id="por-que-tracado" className="py-24 bg-[#05070A] border-t border-white/5 relative overflow-hidden">
+    <section id="por-que-hormos" className="py-24 bg-[#05070A] border-t border-white/5 relative overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-[-10%] w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -35,7 +35,7 @@ export const WhyTracado: React.FC = () => {
           </p>
         </div>
 
-        {/* Side by side comparison: Legacy GRC vs Traçado */}
+        {/* Side by side comparison: Legacy GRC vs Hormos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
           {/* Legacy GRC & Spreadsheets */}
           <div className="rounded-[28px] bg-slate-900/30 border border-rose-500/20 p-6 sm:p-8 space-y-6 relative backdrop-blur-md">
@@ -82,7 +82,7 @@ export const WhyTracado: React.FC = () => {
             </ul>
           </div>
 
-          {/* The Traçado Method */}
+          {/* The Hormos Method */}
           <div className="rounded-[28px] bg-gradient-to-b from-blue-950/30 via-slate-900/60 to-slate-950/80 border border-blue-500/40 p-6 sm:p-8 space-y-6 shadow-2xl shadow-blue-600/10 relative backdrop-blur-xl">
             <div className="flex items-center justify-between pb-4 border-b border-blue-500/30">
               <div className="flex items-center gap-3">
@@ -90,7 +90,7 @@ export const WhyTracado: React.FC = () => {
                   <GitBranch className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">O Método Traçado</h3>
+                  <h3 className="text-lg font-bold text-white">O Método Hormos</h3>
                   <p className="text-xs text-blue-300 font-mono">Grafo Vivo de Causa e Efeito</p>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export const WhyTracado: React.FC = () => {
               PRINCÍPIOS INEGOCIÁVEIS
             </span>
             <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
-              Três coisas que você precisa saber sobre o Traçado
+              Três coisas que você precisa saber sobre o Hormos
             </h3>
           </div>
 
@@ -158,7 +158,7 @@ export const WhyTracado: React.FC = () => {
               </div>
               <h4 className="font-bold text-white text-base">A IA sugere, você confirma</h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Correlação de evidência, rascunho de parecer e proposta de mapeamento entre normas são sugestões determinísticas. A confirmação e responsabilidade humana no Traçado não são opcionais.
+                Correlação de evidência, rascunho de parecer e proposta de mapeamento entre normas são sugestões determinísticas. A confirmação e responsabilidade humana no Hormos não são opcionais.
               </p>
             </div>
 

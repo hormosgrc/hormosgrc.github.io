@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenCommunityModal }) 
 
           <div className="text-center mb-4">
             <span className="text-xs uppercase font-mono tracking-widest text-blue-400 bg-slate-900/60 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-md">
-              Simulador Interativo • Navegue pelas telas reais do Traçado abaixo
+              Simulador Interativo • Navegue pelas telas reais do Hormos abaixo
             </span>
           </div>
           <InteractiveAppPreview />

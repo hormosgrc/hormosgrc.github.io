@@ -41,8 +41,8 @@ const DEFAULT_INTEREST = INTEREST_OPTIONS[0].value;
 // set to one of its own options, so anything else falls back to the
 // default and is shown separately as a context hint instead.
 const PLAN_CONTEXT_LABELS: Record<string, string> = {
-  essencial: 'Traçado Essencial',
-  avancado: 'Traçado Avançado',
+  essencial: 'Hormos Essencial',
+  avancado: 'Hormos Avançado',
   enterprise_mentoria: 'Enterprise + Mentoria de Auditores',
 };
 
@@ -287,8 +287,8 @@ export const DemoModal: React.FC<DemoModalProps> = ({
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          subject: `Traçado — contato de ${formData.name}${formData.company ? ` (${formData.company})` : ''}`,
-          from_name: 'Landing page do Traçado',
+          subject: `Hormos — contato de ${formData.name}${formData.company ? ` (${formData.company})` : ''}`,
+          from_name: 'Landing page do Hormos',
           nome: formData.name,
           email: formData.email,
           empresa: formData.company,
@@ -359,13 +359,13 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                 <Shield className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Traçado Edição Comunidade</h3>
+                <h3 className="text-xl font-bold text-white">Hormos Edição Comunidade</h3>
                 <p className="text-xs text-slate-400">100% Gratuita • Sem limite de tempo • Instalação Local</p>
               </div>
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed">
-              Você pode rodar o Traçado imediatamente em sua infraestrutura utilizando o container Docker oficial com a ISO/IEC 27001 completa e exportações CSV liberadas:
+              Você pode rodar o Hormos imediatamente em sua infraestrutura utilizando o container Docker oficial com a ISO/IEC 27001 completa e exportações CSV liberadas:
             </p>
 
             <div className="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
@@ -436,7 +436,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                   <a
                     className="underline font-semibold"
                     href={`mailto:tracadogrc@gmail.com?subject=${encodeURIComponent(
-                      `Traçado — contato de ${formData.name || 'novo interessado'}`,
+                      `Hormos — contato de ${formData.name || 'novo interessado'}`,
                     )}&body=${encodeURIComponent(
                       [
                         `Nome: ${formData.name}`,
