@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512"
      role="img" aria-label="Hormos"><title>Hormos — ícone</title>
-    <rect width="64" height="64" rx="14" fill="#0B0F14"/>
+    <!-- Sem placa de fundo: só a marca sobre transparência. -->
     <path d="M8.75 49.5 L18.94 38.51" fill="none" stroke="#2563EB" stroke-width="5.5"
           stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M29.28 36.99 L31.52 38.31" fill="none" stroke="#2563EB" stroke-width="5.5"
