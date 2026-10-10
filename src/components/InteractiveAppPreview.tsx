@@ -538,7 +538,7 @@ export const InteractiveAppPreview: React.FC = () => {
               <div className="pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                    O DIFERENCIAL HORMOS
+                    O Diferencial Hormos
                   </span>
                 </div>
                 <h3 className="text-lg font-bold text-white mt-1">Como o Hormos pensa: O Grafo de Causa e Efeito</h3>
