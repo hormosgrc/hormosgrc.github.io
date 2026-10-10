@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
   }, []);
 
   const navLinks = [
-    { label: 'Grafo', href: '#como-funciona' },
+    { label: 'Conexões', href: '#como-funciona' },
     { label: 'Frameworks', href: '#frameworks' },
     { label: 'IA Local', href: '#ia-local' },
     { label: 'Auditoria', href: '#auditores' },
