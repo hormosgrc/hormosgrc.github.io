@@ -38,6 +38,23 @@ export const FRAMEWORKS_DATA: FrameworkInfo[] = [
     mappingHub: 'Herança direta de riscos e controles',
   },
   {
+    // iGovTIC-JUD: o diferencial para o Judiciário. Não é "mais um framework"
+    // — é o índice que o CNJ cobra anualmente de cada tribunal, com régua
+    // própria (a nota de cada subitem muda por ano E por segmento) e evidência
+    // julgada item a item. Faltava na vitrine, que é onde o comprador procura.
+    id: 'igovtic',
+    name: 'iGovTIC-JUD',
+    version: 'ciclo 2026',
+    badge: 'JUDICIÁRIO · CNJ',
+    color: 'border-cyan-500 text-cyan-400 bg-cyan-500/10',
+    controlsCount: 238,
+    description:
+      'Índice de Governança de TIC do Poder Judiciário — 28 perguntas de TIC e 10 de negócio, 238 subitens em 8 temas, com nota que varia por ano e por segmento (TRT, TRE, Superiores, CNJ).',
+    role: 'Nota anual do tribunal perante o CNJ, do diagnóstico ao dossiê de envio',
+    domains: ['Baixo', 'Satisfatório', 'Aprimorado', 'Excelência'],
+    mappingHub: 'Crosswalk curado com a ISO 27001 — a mesma evidência serve às duas exigências',
+  },
+  {
     id: 'cobit',
     name: 'COBIT 2019',
     version: '2019',

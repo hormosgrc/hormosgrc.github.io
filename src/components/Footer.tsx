@@ -37,8 +37,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
               <span className="text-slate-200 font-medium">ὅρμος</span>{' '}
               <span className="text-slate-500">(hórmos)</span>, do grego: o ancoradouro
               abrigado onde o navio para no meio da viagem — e também o colar, contas
-              presas num mesmo fio. É o que o produto é: a parada segura entre{' '}
-              <span className="text-slate-300">querer a certificação e tê-la</span>, com
+              presas num mesmo fio. Ninguém certifica —{' '}
+              <span className="text-slate-300">nem se mantém certificado</span> — da noite
+              para o dia. O Hormos é a parada segura ao longo dessa travessia, com
               controle, risco e evidência num fio só.
             </p>
 
