@@ -20,12 +20,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
   }, []);
 
   const navLinks = [
-    { label: 'O Grafo SGSI', href: '#como-funciona' },
-    { label: 'Multi-Framework', href: '#frameworks' },
-    { label: 'IA Local & Evidências', href: '#ia-local' },
-    { label: 'Auditoria & Mentoria', href: '#auditores' },
-    { label: 'Simulador de GAP', href: '#simulador' },
-    { label: 'Planos & Edições', href: '#planos' },
+    { label: 'Grafo', href: '#como-funciona' },
+    { label: 'Frameworks', href: '#frameworks' },
+    { label: 'IA Local', href: '#ia-local' },
+    { label: 'Auditoria', href: '#auditores' },
+    { label: 'Simulador', href: '#simulador' },
+    { label: 'Planos', href: '#planos' },
   ];
 
   return (
@@ -42,16 +42,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
         <a href="#" className="flex items-center gap-3 group">
           {/* A marca de verdade, no lugar do "T" provisório que estava aqui. */}
           <Marca tamanho={44} className="shrink-0 transition-transform group-hover:scale-105" />
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
               <span className="marca-nome text-2xl text-white">Hormos</span>
               <span className="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
                 GRC Suite
               </span>
-            </div>
-            <span className="text-[10px] text-slate-400 font-medium tracking-tight">
-              Governança, Riscos e Conformidade
-            </span>
           </div>
         </a>
 
@@ -61,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
             <a
               key={link.label}
               href={link.href}
-              className="px-3 py-1 text-xs font-medium text-slate-400 hover:text-blue-400 rounded-full hover:bg-white/5 transition-colors"
+              className="px-3.5 py-1 text-xs font-medium text-slate-400 hover:text-blue-400 rounded-full hover:bg-white/5 transition-colors whitespace-nowrap"
             >
               {link.label}
             </a>
