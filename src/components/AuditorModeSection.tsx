@@ -5,7 +5,6 @@ import {
   ShieldCheck,
   Gauge,
   Lock,
-  AlertTriangle,
   Archive,
   Eye
 } from 'lucide-react';
@@ -55,7 +54,7 @@ export const AuditorModeSection: React.FC = () => {
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
             Para firmas de auditoria e consultoria que acompanham dez, vinte clientes.
             Cada empresa tem o <strong className="text-slate-200">seu próprio banco de dados</strong> —
-            não um compartimento dentro do mesmo banco. O PostgreSQL recusa a referência
+            não um compartimento dentro da mesma base. O PostgreSQL recusa a referência
             cruzada entre eles: o isolamento deixa de depender de disciplina de código e
             passa a ser propriedade do servidor.
           </p>
@@ -64,9 +63,9 @@ export const AuditorModeSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
             <Database className="w-6 h-6 text-cyan-400 mb-3" />
-            <h3 className="text-base font-bold text-white mb-2">Banco por empresa</h3>
+            <h3 className="text-base font-bold text-white mb-2">Uma base de dados por empresa</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Criar um cliente leva cerca de um segundo e meio: banco próprio, esquema
+              Criar um cliente leva cerca de um segundo e meio: base própria, esquema
               replicado do mesmo DDL que construiu a instalação, e a empresa nasce
               <strong className="text-slate-200"> vazia</strong> — dado de demonstração não
               entra em base de cliente real.
@@ -85,7 +84,7 @@ export const AuditorModeSection: React.FC = () => {
             <Archive className="w-6 h-6 text-cyan-400 mb-3" />
             <h3 className="text-base font-bold text-white mb-2">Desativar não apaga</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Tirar um cliente da operação preserva o banco. O art. 23 da Res. CMN 4.893
+              Tirar um cliente da operação preserva a base dele. O art. 23 da Res. CMN 4.893
               manda guardar cinco anos, e contrato de auditoria costuma mandar mais.
               Remover é ato de servidor, deliberado.
             </p>
@@ -116,9 +115,11 @@ export const AuditorModeSection: React.FC = () => {
               ))}
             </div>
             <div className="px-5 py-3.5 border-t border-slate-800 text-xs text-slate-500 leading-relaxed">
-              Cliente sem avaliação é <strong className="text-slate-300">&ldquo;sem dados&rdquo;</strong>,
-              não &ldquo;crítico&rdquo;: são coisas diferentes, e chamar de crítico seria
-              inventar um diagnóstico sobre quem ainda não começou.
+              Cliente que ainda não começou aparece como
+              <strong className="text-slate-300"> &ldquo;sem dados&rdquo;</strong>, nunca como
+              &ldquo;crítico&rdquo;. São coisas diferentes, e chamar de crítico quem apenas
+              não começou seria inventar um diagnóstico — justamente o tipo de erro que você
+              não pode levar para uma reunião com o cliente.
             </div>
           </div>
 
@@ -128,7 +129,7 @@ export const AuditorModeSection: React.FC = () => {
               <p className="text-sm text-slate-400 leading-relaxed">
                 <strong className="text-slate-200">Só o administrador liga.</strong> O modo
                 se ativa em Configurações da Empresa, por conta com perfil Administrador —
-                ligar um módulo que cria bancos de dados não é ação de qualquer conta.
+                ligar um módulo que cria bases de dados não é ação de qualquer conta.
               </p>
             </div>
             <div className="flex gap-3 p-4 rounded-xl bg-slate-900/40 border border-slate-800">
@@ -140,11 +141,13 @@ export const AuditorModeSection: React.FC = () => {
               </p>
             </div>
             <div className="flex gap-3 p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-              <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+              <Server className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
               <p className="text-sm text-slate-400 leading-relaxed">
-                <strong className="text-slate-200">Banco fora do ar é &ldquo;indisponível&rdquo;,
-                não zero.</strong> Dizer que um cliente está mal quando o que caiu foi o
-                banco seria mentir sobre ele.
+                <strong className="text-slate-200">A infraestrutura é sua.</strong> O Hormos
+                roda no servidor da própria firma. Os dados das empresas que você audita
+                ficam com você — não numa nuvem de terceiro, não conosco. Para quem guarda
+                informação de clientes que concorrem entre si, isso não é preferência: é
+                condição.
               </p>
             </div>
           </div>

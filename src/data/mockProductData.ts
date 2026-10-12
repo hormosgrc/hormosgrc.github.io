@@ -312,17 +312,30 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'avancado',
     name: 'Avançado',
-    tagline: 'CORRELACIONE normas. Uma evidência cobre ISO, NIST, CIS e COBIT de uma vez, pelo grafo de herança.',
+    tagline: 'CORRELACIONE normas e atenda o REGULADOR. Uma evidência cobre ISO, NIST, CIS e COBIT de uma vez — e o Banco Central e o CNJ entram com régua própria.',
     price: 'Consulte Condições',
     period: 'licença por versão — v2.x',
-    frameworkScope: ['ISO 27001', 'CIS v8', 'NIST CSF 2.0', 'COBIT 2019', 'ISO 42001 (IA)', 'LGPD'],
+    frameworkScope: ['ISO 27001', 'CIS v8', 'NIST CSF 2.0', 'COBIT 2019', 'ISO 42001 (IA)', 'BACEN 4.893', 'iGovTIC-JUD', 'LGPD'],
     features: [
       'Tudo do plano Essencial',
-      'Todos os 6 frameworks normativos ativados',
+      'Os 8 frameworks ativados — os 6 normativos mais os 2 regulatórios brasileiros',
       'Motor de Mapeamento Multi-Framework em Grafo',
       'Herança cruzada de evidências operacionais',
       'Módulo de Governança de Inteligência Artificial (ISO 42001)',
-
+      // BACEN e iGovTIC eram os dois maiores diferenciais do plano e estavam
+      // INVISÍVEIS na vitrine: a lista do Avançado tinha 6 itens contra 14 do
+      // Essencial, e nenhum dos dois aparecia. Quem vende um plano precisa
+      // conseguir dizer o que ele tem.
+      '— BACEN Res. CMN 4.893: 152 requisitos por artigo, parágrafo e inciso',
+      'Perfil da instituição: declare o que você é e a aplicabilidade cai sozinha',
+      'Veredito "atende / não atende" com o motivo — a língua que o regulador lê',
+      'Controle de prazos do regulador: dez dias para comunicar nuvem, guarda de cinco anos (art. 23)',
+      'Relatório Anual de Segurança Cibernética gerado dos seus dados (art. 8º)',
+      'Declaração formal de não ocorrência — a ausência do fato também é obrigação',
+      '— iGovTIC-JUD (CNJ): o índice anual do Judiciário, com régua por ano e segmento',
+      'Linha de base do seu tribunal a partir do registro público, sem digitar nada',
+      'Dossiê pronto para o INTEGRA, com pré-voo das regras que o CNJ aplicaria',
+      '— Modo auditor: carteira de clientes, cada empresa com base de dados própria',
       'API de integração com ferramentas ITSM / SIEM / Jira',
     ],
     ctaLabel: 'Solicitar Demonstração Avançada',
@@ -335,8 +348,10 @@ export const PRICING_PLANS: PricingPlan[] = [
     price: 'Solução Sob Medida',
     period: 'licença inclusa nos 3 anos de mentoria',
     highlightBadge: 'SUITE + CONSULTORIA',
-    frameworkScope: ['ISO 27001', 'CIS v8', 'NIST CSF 2.0', 'COBIT 2019', 'ISO 42001 (IA)', 'LGPD'],
+    frameworkScope: ['ISO 27001', 'CIS v8', 'NIST CSF 2.0', 'COBIT 2019', 'ISO 42001 (IA)', 'BACEN 4.893', 'iGovTIC-JUD', 'LGPD'],
     features: [
+      'Tudo do plano Avançado, incluindo BACEN, iGovTIC-JUD e o modo auditor',
+      'Modo auditor: uma instalação atende toda a sua carteira, uma empresa sem enxergar a outra',
       'Licença do produto inclusa durante todo o ciclo de mentoria (3 anos)',
       'Ao fim do ciclo, migra para Essencial ou Avançado licenciado por versão',
       'Instância dedicada On-Premise / Appliance virtual na sua rede',

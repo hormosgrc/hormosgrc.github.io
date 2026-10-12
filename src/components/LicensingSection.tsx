@@ -158,7 +158,7 @@ export const LicensingSection: React.FC<LicensingSectionProps> = ({ onSelectPlan
         <div className="mt-12 p-4 rounded-2xl bg-black/40 border border-white/5 text-center text-xs text-slate-400 max-w-2xl mx-auto flex items-center justify-center gap-2 backdrop-blur-md">
           <Lock className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>
-            <strong>Compromisso de Dados Abertos:</strong> sem fidelidade forçada. O banco roda no seu servidor e o backup é seu. Se uma licença vencer, o sistema entra em somente leitura e a exportação em CSV continua liberada — vencimento nunca vira sequestro de dado. Na Edição Comunidade, a exportação em CSV faz parte do plano Essencial.
+            <strong>Compromisso de Dados Abertos:</strong> sem fidelidade forçada. A base de dados roda no seu servidor e o backup é seu. Se uma licença vencer, o sistema entra em somente leitura e a exportação em CSV continua liberada — vencimento nunca vira sequestro de dado. Na Edição Comunidade, a exportação em CSV faz parte do plano Essencial.
           </span>
         </div>
       </div>
