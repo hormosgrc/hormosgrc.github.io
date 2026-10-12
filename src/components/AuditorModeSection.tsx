@@ -6,6 +6,7 @@ import {
   Gauge,
   Lock,
   Archive,
+  Server,
   Eye
 } from 'lucide-react';
 
