@@ -77,6 +77,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
               <li><a href="#frameworks" className="hover:text-white transition-colors">NIST CSF 2.0 (6 Funções)</a></li>
               <li><a href="#frameworks" className="hover:text-white transition-colors">LGPD & RoPA (Art. 37/46)</a></li>
               <li><a href="#frameworks" className="hover:text-white transition-colors">COBIT 2019 & ISO 42001</a></li>
+              <li><a href="#frameworks" className="hover:text-white transition-colors">BACEN Res. CMN 4.893</a></li>
+              <li><a href="#modo-auditor" className="hover:text-white transition-colors">Modo auditor (multiempresa)</a></li>
             </ul>
           </div>
 

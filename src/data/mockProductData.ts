@@ -39,6 +39,24 @@ export const FRAMEWORKS_DATA: FrameworkInfo[] = [
   },
   {
     // iGovTIC-JUD: o diferencial para o Judiciário. Não é "mais um framework"
+    // BACEN Res. CMN 4.893 — primeiro framework REGULATÓRIO brasileiro do
+    // produto, e o que abre o mercado de instituições financeiras. Vai na
+    // vitrine com o aviso de âmbito, porque aplicar a régua errada é o erro
+    // mais caro do módulo e o comprador tem de saber se é dele antes de pedir
+    // a demonstração.
+    id: 'bacen',
+    name: 'BACEN Res. CMN 4.893',
+    version: 'vigente 19/12/2025',
+    badge: 'FINANCEIRO · BANCO CENTRAL',
+    color: 'border-sky-500 text-sky-400 bg-sky-500/10',
+    controlsCount: 152,
+    description:
+      'Política de segurança cibernética e contratação de nuvem para instituições autorizadas pelo Banco Central — 152 requisitos por artigo, parágrafo e inciso, na versão alterada pelas Res. CMN 5.117/2024 e 5.274/2025, com os 14 controles mínimos obrigatórios. Não se aplica a instituições de pagamento, corretoras e distribuidoras, que seguem a Res. BCB 85/2021.',
+    role: 'Do perfil da instituição ao Relatório Anual que vai ao conselho até 31 de março',
+    domains: ['Política', 'Controles mínimos', 'Nuvem e terceiros', 'Continuidade', 'Retenção 5 anos'],
+    mappingHub: 'Herda a cobertura da ISO 27001 pelo crosswalk — a evidência que você já tem vale aqui',
+  },
+  {
     // — é o índice que o CNJ cobra anualmente de cada tribunal, com régua
     // própria (a nota de cada subitem muda por ano E por segmento) e evidência
     // julgada item a item. Faltava na vitrine, que é onde o comprador procura.
@@ -60,7 +78,9 @@ export const FRAMEWORKS_DATA: FrameworkInfo[] = [
     version: '2019',
     badge: 'GOVERNANÇA TI',
     color: 'border-amber-500 text-amber-400 bg-amber-500/10',
-    controlsCount: 41,
+    // 40, não 41: havia um EDM.06 no catálogo que o COBIT 2019 não tem, e a
+    // descrição já dizia 40 — o texto estava certo e o número errado.
+    controlsCount: 40,
     description: 'Governança e Gestão de TI Corporativa — 40 objetivos distribuídos em 5 domínios fundamentais da ISACA.',
     role: 'Alinhamento Estratégico com Negócios e Stakeholders',
     domains: ['EDM (Avaliar/Dirigir)', 'APO (Alinhar/Organizar)', 'BAI (Construir/Adquirir)', 'DSS (Entregar/Suportar)', 'MEA (Monitorar)'],

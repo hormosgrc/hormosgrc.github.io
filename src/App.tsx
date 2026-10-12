@@ -6,6 +6,7 @@ import { GraphEngineSection } from './components/GraphEngineSection';
 import { MultiFrameworkSection } from './components/MultiFrameworkSection';
 import { AiLocalEngineSection } from './components/AiLocalEngineSection';
 import { AuditorMentorshipSection } from './components/AuditorMentorshipSection';
+import { AuditorModeSection } from './components/AuditorModeSection';
 import { InteractiveGapSimulator } from './components/InteractiveGapSimulator';
 import { LicensingSection } from './components/LicensingSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -67,7 +68,8 @@ export const App: React.FC = () => {
         <AiLocalEngineSection />
 
         {/* 6. Human Dimension: Certified Lead Auditor Mentorship & Mock Audits */}
-        <AuditorMentorshipSection
+        <AuditorModeSection />
+      <AuditorMentorshipSection
           onOpenDemo={() => handleOpenDemo('Enterprise com Mentoria')}
         />
 

@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenCommunityModal }) 
             <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
             <span>GRC Intelligence Suite</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-300 font-normal tracking-normal uppercase text-[11px]">ISO 27001, CIS, NIST, COBIT, ISO 42001 & LGPD</span>
+            <span className="text-slate-300 font-normal tracking-normal uppercase text-[11px]">ISO 27001, LGPD, CIS, NIST, COBIT, ISO 42001, BACEN & iGovTIC-JUD</span>
           </div>
 
           {/* Main Headline */}
@@ -48,7 +48,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenCommunityModal }) 
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg text-slate-400 max-w-3xl leading-relaxed font-normal">
-            Consolide ISO 27001, CIS, NIST, COBIT e LGPD em uma única infraestrutura com <strong className="text-white font-semibold">IA Local e Motor Semântico</strong> para análise preditiva de evidências e <strong className="text-white font-semibold">acompanhamento contínuo por Auditores Líderes certificados</strong>.
+            Consolide ISO 27001, LGPD, CIS, NIST, COBIT e a Res. CMN 4.893 do Banco Central em uma única infraestrutura com <strong className="text-white font-semibold">IA Local e Motor Semântico</strong> para análise preditiva de evidências e <strong className="text-white font-semibold">acompanhamento contínuo por Auditores Líderes certificados</strong>.
           </p>
 
           {/* Core Trust Pillars Checklist */}

@@ -23,7 +23,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
     { label: 'Conexões', href: '#como-funciona' },
     { label: 'Frameworks', href: '#frameworks' },
     { label: 'IA Local', href: '#ia-local' },
-    { label: 'Auditoria', href: '#auditores' },
+    { label: 'Modo auditor', href: '#modo-auditor' },
+  { label: 'Auditoria', href: '#auditores' },
     { label: 'Simulador', href: '#simulador' },
     { label: 'Planos', href: '#planos' },
   ];
