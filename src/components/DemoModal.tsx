@@ -179,6 +179,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
   const captchaBox = useRef<HTMLDivElement>(null);
   const captchaId = useRef<string | null>(null);
   const [copiedDocker, setCopiedDocker] = useState(false);
+  const [copiedVerify, setCopiedVerify] = useState(false);
   const [formData, setFormData] = useState(() => buildInitialFormData(initialPlan));
   // Um campo vazio que a pessoa ainda nem tocou não é erro dela — é o
   // formulário recém-aberto. Só acende o vermelho depois que ela saiu do campo.
@@ -339,6 +340,23 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     setTimeout(() => setCopiedDocker(false), 2000);
   };
 
+  /* A identidade do assinante é FIXADA de propósito. Com
+     --certificate-identity-regexp '.*' o visitante provaria apenas que a
+     imagem foi assinada por ALGUÉM — quem publicasse a própria imagem,
+     assinada com a própria conta, passaria no teste. Assinatura que não prende
+     identidade é decoração. */
+  const comandoVerificacao =
+    'docker run --rm ghcr.io/sigstore/cosign/cosign:latest verify \\\n' +
+    '  ghcr.io/hormosgrc/hormos-portal:2.2.1 \\\n' +
+    "  --certificate-identity 'sgduarte7@gmail.com' \\\n" +
+    "  --certificate-oidc-issuer 'https://accounts.google.com'";
+
+  const handleCopyVerify = () => {
+    navigator.clipboard.writeText(comandoVerificacao);
+    setCopiedVerify(true);
+    setTimeout(() => setCopiedVerify(false), 2000);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-xl bg-slate-900/90 border border-white/10 rounded-[28px] shadow-2xl p-6 sm:p-8 overflow-hidden text-slate-100 backdrop-blur-2xl">
@@ -385,6 +403,35 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               <pre className="p-3 bg-black/60 rounded-xl text-xs font-mono text-blue-300 overflow-x-auto border border-white/5">
                 git clone https://github.com/hormosgrc/hormos.git &amp;&amp; cd hormos &amp;&amp; ./install.sh
               </pre>
+            </div>
+
+            {/* Verificação da assinatura. Num produto de segurança, "confie em
+                mim" não é resposta: a imagem é assinada com cosign (keyless,
+                Sigstore) e qualquer pessoa pode conferir ANTES de rodar — sem
+                instalar nada além do Docker que já é pré-requisito. */}
+            <div className="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
+                <span className="flex items-center gap-1.5">
+                  <Shield className="w-3.5 h-3.5 text-emerald-400" />
+                  Verifique a assinatura antes de rodar:
+                </span>
+                <button
+                  onClick={handleCopyVerify}
+                  className="flex items-center gap-1 text-[11px] text-emerald-400 hover:text-emerald-300"
+                >
+                  {copiedVerify ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedVerify ? 'Copiado!' : 'Copiar'}</span>
+                </button>
+              </div>
+              <pre className="p-3 bg-black/60 rounded-xl text-[11px] font-mono text-emerald-300 overflow-x-auto border border-white/5 whitespace-pre">
+{comandoVerificacao}
+              </pre>
+              <p className="text-[11px] text-slate-400 leading-relaxed">
+                A imagem é assinada com <span className="text-slate-200">cosign keyless</span> (Sigstore),
+                e o registro público de transparência guarda a prova. O comando confirma que ela
+                veio de nós e não foi adulterada no caminho — não é preciso instalar o cosign,
+                só o Docker que você já vai usar.
+              </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-black/40 border border-white/5 text-xs text-slate-300 space-y-1">
