@@ -468,7 +468,7 @@ export const FAQ_DATA = [
   },
   {
     question: 'Como funciona a Inteligência Artificial local? Meus dados confidenciais saem da rede da empresa?',
-    answer: 'NÃO. A inteligência artificial do Hormos roda como um motor embarcado diretamente no servidor da sua organização (on-premise ou appliance virtual). Nenhum documento, evidência ou registro de risco sai da sua infraestrutura. Além disso, a IA é determinística e baseada no princípio "A IA sugere, o especialista humano confirma" — sem alucinações e com auditoria completa de cada recomendação.',
+    answer: 'NÃO. Tudo roda dentro do servidor da sua organização. O modelo de linguagem é o Qwen3-8B (Apache 2.0), baixado uma única vez e executado localmente pelo Ollama; a correlação semântica usa embeddings locais. Depois da instalação o appliance não fala com a internet — nenhum documento, evidência ou registro de risco sai da sua infraestrutura, e não há chamada a nenhuma API externa. Sobre alucinação, a arquitetura é explícita: os FATOS vêm de um motor determinístico, que lê o grafo e monta o parecer técnico; ao modelo de linguagem cabe apenas REDIGIR esse parecer em texto corrido. Um refino que perca qualquer registro citado é descartado em favor do texto técnico completo. Vale o princípio "a IA sugere, o especialista humano confirma", com registro de auditoria de cada recomendação.',
   },
   {
     question: 'Como funciona a herança de evidências entre diferentes frameworks (ISO 27001, CIS, NIST, COBIT, LGPD)?',
@@ -488,6 +488,6 @@ export const FAQ_DATA = [
   },
   {
     question: 'Quais são os requisitos de instalação para rodar o Hormos?',
-    answer: 'O Hormos pode ser executado em qualquer servidor Linux (Ubuntu/Debian/RHEL), Docker, Kubernetes ou como máquina virtual pré-configurada (OVA). Possui suporte a autenticação corporativa Single Sign-On (Keycloak, Azure AD / Entra ID, Okta via SAML/OIDC) e banco de dados isolado.',
+    answer: 'Docker Engine 24+ com Compose v2, em Linux (Ubuntu/Debian/RHEL), macOS ou Windows 10/11 — no Windows o instalador sobe o WSL2 com Docker Engine, sem exigir Docker Desktop. Os requisitos dependem de uma escolha: o Analista IA. SEM ele, 2 GB de RAM livres ao Docker, 4 GB de disco e 2 núcleos — e o motor semântico continua fazendo correlação de evidências, análise de GAP, índices e relatórios. COM o Analista IA, 8 GB de RAM livres ao Docker (o que na prática pede 12 GB no dispositivo para avaliação e 16 GB em produção), 16 a 20 GB de disco e um Core i5 de 11ª geração ou Ryzen 5 com 4 núcleos. GPU não é necessária: o modelo roda em CPU por desenho, porque o appliance é instalado na infraestrutura do cliente, que raramente tem GPU no servidor de aplicação. Abaixo de 8 GB o instalador RECUSA a IA e segue sem ela, em vez de degradar em silêncio com um modelo menor. Autenticação corporativa Single Sign-On (Keycloak embarcado, e federação com Azure AD / Entra ID ou Okta via SAML/OIDC) e banco isolado por cliente.',
   },
 ];
