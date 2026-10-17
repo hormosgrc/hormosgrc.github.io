@@ -192,7 +192,7 @@ export const InteractiveAppPreview: React.FC = () => {
 
           {/* Footer watermark inside mockup */}
           <div className="pt-4 border-t border-slate-800/80 text-[10px] text-slate-500 flex items-center justify-between">
-            <span className="font-mono">Hormos v2.2.0</span>
+            <span className="font-mono">Hormos v2.2.3</span>
             <span className="text-emerald-500 flex items-center gap-1 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               On-Premise Ativo
