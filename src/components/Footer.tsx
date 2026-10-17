@@ -109,7 +109,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
           </div>
 
           <div className="flex items-center gap-6">
-            <span>Privacidade & Soberania de Dados</span>
+            {/* Era um <span> morto, com cara de link e sem destino — e ao lado
+                de uma promessa de LGPD no formulário, sem política nenhuma
+                publicada. Agora leva à página de verdade. */}
+            <a
+              href="/privacidade.html"
+              className="hover:text-white transition-colors underline decoration-white/20 underline-offset-2"
+            >
+              Política de Privacidade
+            </a>
             <span>Documentação Técnica</span>
             <button
               onClick={scrollToTop}

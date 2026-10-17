@@ -1,0 +1,381 @@
+<!doctype html>
+<!--
+  Política de Privacidade do site.
+
+  POR QUE É HTML ESTÁTICO EM public/, e não uma rota React. O site é uma SPA de
+  página única com âncoras; não há roteador. Numa SPA servida pelo GitHub Pages,
+  uma rota de verdade exige o truque do 404.html para reescrever o caminho — e
+  um documento legal que dependa de JavaScript para existir é frágil justamente
+  onde precisa ser confiável: leitor de tela, modo de leitura, impressão, e a
+  pessoa que salva a página como prova do que foi prometido na data X.
+  Em public/, o Vite copia o arquivo para a raiz do dist e ele é servido em
+  /privacidade.html sem depender de nada.
+
+  O que está escrito aqui é o que foi VERIFICADO, não o que soa bem. As
+  afirmações sobre o provedor do formulário vêm da documentação pública dele
+  (consultada em 17/10/2026) e estão datadas no texto, porque política de
+  terceiro muda sem avisar.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — Hormos</title>
+<meta name="description" content="Como o Hormos trata dados pessoais no site e no appliance: bases legais da LGPD, transferência internacional, retenção e como exercer seus direitos.">
+<!-- Documento legal não deve ser indexado como se fosse página de produto,
+     mas também não deve ser escondido: quem procura precisa achar. -->
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Tokens, não valores soltos — mesma regra do produto. As cores são as da
+     marca: traço #315AE6 ≈ blue-600, anéis #6496F2 ≈ blue-400. */
+  :root{
+    --fundo:#05070A; --fundo-caixa:#0B1017; --borda:#1C2533;
+    --texto:#CBD5E1; --texto-forte:#F1F5F9; --texto-fraco:#94A3B8;
+    --marca:#60A5FA; --marca-forte:#2563EB; --alerta:#FBBF24;
+    --fonte:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    /* Escala tipográfica: sete passos, e nenhum valor de fonte fora daqui.
+       A primeira versão tinha dez, com 13/13,5 e 14/14,5/15,5 — meio pixel
+       não comunica hierarquia, só dificulta manter. */
+    --t-nota:11px; --t-mini:12px; --t-mono:13px; --t-peq:14px;
+    --t-corpo:15px; --t-base:16px;
+    --t-h2:clamp(18px,3.2vw,21px); --t-h1:clamp(26px,5.2vw,38px);
+    /* Superfícies translúcidas, também em token */
+    --veu:rgba(11,16,23,.72); --realce:rgba(37,99,235,.1);
+  }
+  /* A landing é escura por desenho, então esta página nasce escura. Mas quem
+     IMPRIME uma política (e isso acontece: anexo de due diligence, pasta do
+     jurídico) não quer uma folha preta — daí o bloco @media print. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--fundo); color:var(--texto);
+    font-family:var(--fonte); font-size:var(--t-base); line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .faixa{
+    border-bottom:1px solid var(--borda); background:var(--veu);
+    backdrop-filter:blur(8px); position:sticky; top:0; z-index:10;
+  }
+  .limite{max-width:760px; margin:0 auto; padding:0 16px}
+  .faixa .limite{display:flex; align-items:center; gap:12px; min-height:60px}
+  .voltar{
+    color:var(--texto-fraco); text-decoration:none; font-size:var(--t-peq);
+    font-weight:500; display:inline-flex; align-items:center; gap:7px;
+    padding:7px 11px; margin-left:-11px; border-radius:7px;
+  }
+  .voltar:hover{color:var(--texto-forte); background:var(--realce)}
+  .voltar:focus-visible{outline:2px solid var(--marca); outline-offset:2px}
+  main{padding:40px 0 80px}
+  h1{
+    font-size:var(--t-h1); line-height:1.18; margin:0 0 10px;
+    color:var(--texto-forte); font-weight:800; letter-spacing:-.02em;
+  }
+  .datas{
+    font-family:var(--mono); font-size:var(--t-mini); color:var(--texto-fraco);
+    margin:0 0 30px; padding-bottom:22px; border-bottom:1px solid var(--borda);
+  }
+  h2{
+    font-size:var(--t-h2); margin:42px 0 12px; color:var(--texto-forte);
+    font-weight:700; letter-spacing:-.01em; scroll-margin-top:76px;
+  }
+  h3{font-size:var(--t-base); margin:26px 0 8px; color:var(--texto-forte); font-weight:600}
+  p,li{font-size:var(--t-corpo)}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  strong{color:var(--texto-forte); font-weight:600}
+  a{color:var(--marca); text-decoration:underline; text-underline-offset:2px}
+  a:hover{color:var(--texto-forte)}
+  a:focus-visible{outline:2px solid var(--marca); outline-offset:2px; border-radius:2px}
+  code{font-family:var(--mono); font-size:var(--t-mono); color:var(--marca)}
+  .caixa{
+    background:var(--fundo-caixa); border:1px solid var(--borda);
+    border-radius:11px; padding:17px 19px; margin:0 0 20px;
+  }
+  .caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+  .atencao{border-left:3px solid var(--alerta)}
+  .atencao .rotulo{
+    display:block; font-family:var(--mono); font-size:var(--t-nota); letter-spacing:.07em;
+    text-transform:uppercase; color:var(--alerta); margin-bottom:7px; font-weight:500;
+  }
+  .indice ol{margin:0; padding-left:20px; font-size:var(--t-peq)}
+  .indice li{margin-bottom:4px}
+  /* Tabelas de dados: numa largura de telefone elas estouram a página, então
+     rolam dentro do próprio bloco em vez de empurrar o corpo do texto. */
+  .rolagem{overflow-x:auto; margin:0 0 20px; -webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse; width:100%; min-width:460px; font-size:var(--t-peq)}
+  th,td{text-align:left; padding:9px 11px; border-bottom:1px solid var(--borda); vertical-align:top}
+  th{color:var(--texto-forte); font-weight:600; font-size:var(--t-mono); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  footer{border-top:1px solid var(--borda); margin-top:52px; padding-top:22px}
+  footer p{font-size:var(--t-mono); color:var(--texto-fraco)}
+  @media print{
+    :root{--fundo:#fff; --fundo-caixa:#fff; --borda:#CBD5E1;
+          --texto:#1E293B; --texto-forte:#000; --texto-fraco:#475569; --marca:#1D4ED8}
+    .faixa{display:none} main{padding:0}
+    .caixa{break-inside:avoid} h2{break-after:avoid}
+    a{color:#1D4ED8}
+    a[href^="http"]::after{content:" (" attr(href) ")"; font-size:var(--t-nota); color:#475569}
+  }
+</style>
+</head>
+<body>
+
+<div class="faixa">
+  <div class="limite">
+    <a class="voltar" href="/" aria-label="Voltar para a página inicial do Hormos">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Hormos
+    </a>
+  </div>
+</div>
+
+<main>
+<div class="limite">
+
+  <h1>Política de Privacidade</h1>
+  <p class="datas">
+    Vigente desde 17/10/2026 &middot; Última atualização: 17/10/2026
+  </p>
+
+  <div class="caixa">
+    <p><strong>O resumo honesto, antes dos detalhes.</strong> Este site tem
+    <strong>um</strong> formulário, o de agendamento de demonstração, e é a única
+    coisa aqui que coleta dado pessoal. Não há cookie de rastreamento, não há
+    analytics, não há pixel de rede social, e nós não vendemos, alugamos nem
+    cedemos dados de ninguém.</p>
+    <p>E a distinção que mais importa: <strong>o software Hormos, quando
+    instalado na sua organização, não nos manda nada.</strong> Ele roda dentro da
+    sua infraestrutura, inclusive a inteligência artificial. Não temos acesso aos
+    seus riscos, políticas, evidências ou incidentes — nem se quiséssemos.</p>
+  </div>
+
+  <nav class="caixa indice" aria-label="Índice">
+    <ol>
+      <li><a href="#quem">Quem é o controlador</a></li>
+      <li><a href="#site">O que o site coleta</a></li>
+      <li><a href="#appliance">O que o software instalado coleta — e por que é diferente</a></li>
+      <li><a href="#terceiros">Quem mais toca nesses dados</a></li>
+      <li><a href="#internacional">Transferência internacional</a></li>
+      <li><a href="#prazo">Por quanto tempo guardamos</a></li>
+      <li><a href="#direitos">Seus direitos, e como exercê-los</a></li>
+      <li><a href="#seguranca">Segurança</a></li>
+      <li><a href="#menores">Crianças e adolescentes</a></li>
+      <li><a href="#mudancas">Mudanças nesta política</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="quem">1. Quem é o controlador</h2>
+  <p>O Hormos é um projeto de software desenvolvido e mantido de forma
+  independente no Brasil. Para efeito da
+  <strong>Lei nº 13.709/2018 (LGPD)</strong>, o controlador dos dados coletados
+  <em>neste site</em> é o responsável pelo projeto, contatável em
+  <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a>.</p>
+  <p>Esse mesmo endereço atende aos pedidos de titular descritos na
+  <a href="#direitos">seção 7</a>, e é por ele que você fala com quem
+  efetivamente decide sobre o tratamento — não há camada de atendimento no meio.</p>
+
+  <h2 id="site">2. O que o site coleta</h2>
+  <p>Somente o que você digita no formulário de agendamento de demonstração.
+  Nada é coletado por navegar pelas páginas.</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th>Dado</th><th>Para que</th><th>Base legal (LGPD)</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Nome</td>
+        <td>Saber com quem estamos falando e como tratar você</td>
+        <td rowspan="4">Art. 7º, V — procedimentos preliminares relacionados a
+        contrato, <strong>a pedido do titular</strong>. Você pediu o contato; é
+        isso que autoriza o uso.</td>
+      </tr>
+      <tr><td>E-mail</td><td>Responder ao pedido e enviar o convite da reunião</td></tr>
+      <tr><td>Empresa</td><td>Entender o contexto antes da conversa (porte, setor, framework aplicável)</td></tr>
+      <tr><td>Telefone</td><td>Alternativa de contato, quando você o informa</td></tr>
+      <tr>
+        <td>Interesse e mensagem</td>
+        <td>Preparar a demonstração para o seu caso em vez de uma apresentação genérica</td>
+        <td>Art. 7º, V</td>
+      </tr>
+      <tr>
+        <td>Sinal do verificador anti-robô</td>
+        <td>Impedir envio automatizado em massa pelo formulário</td>
+        <td>Art. 7º, IX — legítimo interesse na segurança do próprio canal</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Não usamos esses dados para marketing.</strong> Você não entra em
+  lista de disparo por ter pedido uma demonstração. Se um dia quisermos escrever
+  para você sobre outro assunto, pediremos consentimento separado — que é o que
+  a LGPD exige e o que qualquer um esperaria.</p>
+
+  <h3>Cookies e medição</h3>
+  <p>O site não usa cookies próprios de rastreamento nem ferramenta de analytics.
+  O verificador anti-robô (hCaptcha) e as fontes tipográficas (Google Fonts) são
+  carregados de servidores de terceiros e, como qualquer requisição na web, esses
+  servidores recebem seu endereço IP e dados técnicos do navegador para
+  entregar o arquivo. Isso é inerente a carregar um recurso externo, não uma
+  coleta nossa — e está dito aqui porque você tem o direito de saber que
+  acontece.</p>
+
+  <h2 id="appliance">3. O que o software instalado coleta — e por que é diferente</h2>
+  <div class="caixa">
+    <p><strong>Nada chega a nós.</strong> O Hormos é entregue como
+    <em>appliance</em>: roda em servidor seu, em contêineres seus, com banco de
+    dados seu. Riscos, políticas, evidências, incidentes, não conformidades,
+    nomes de colaboradores — tudo permanece na sua infraestrutura.</p>
+    <p>A inteligência artificial também é local. O modelo de linguagem é baixado
+    uma vez e executado dentro do appliance; <strong>não há chamada a nenhuma API
+    de IA externa</strong>. Depois da instalação, o appliance não precisa de
+    internet para operar — nem para a IA, nem para validar a licença, que é
+    verificada por assinatura criptográfica, sem telefonar para casa.</p>
+  </div>
+  <p>Na relação com os dados que a <em>sua</em> organização trata dentro do
+  Hormos, <strong>você é o controlador</strong>. Nós não somos operador desses
+  dados, porque não os tratamos nem temos acesso a eles. Se houver suporte técnico
+  em que você opte por nos mostrar ou enviar algum conteúdo, isso é um ato seu,
+  pontual e sob seu controle — e nessa hipótese tratamos o material apenas para
+  resolver o chamado, e o descartamos ao encerrá-lo.</p>
+
+  <h2 id="terceiros">4. Quem mais toca nesses dados</h2>
+  <p>Transparência aqui vale mais que uma frase bonita. Prometer "não
+  compartilhamos com terceiros" seria <strong>falso</strong> no instante em que
+  você clica em enviar, porque o formulário passa por um provedor. Então: quem são.</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th>Terceiro</th><th>Papel</th><th>O que vê</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Web3Forms</strong> (Web3Creative)</td>
+        <td>Operador — recebe o envio do formulário e o encaminha ao nosso e-mail</td>
+        <td>Todo o conteúdo do formulário, no momento do envio</td>
+      </tr>
+      <tr>
+        <td><strong>Google</strong> (Gmail)</td>
+        <td>Operador — hospeda a caixa de e-mail que recebe e guarda o contato</td>
+        <td>A mensagem recebida, enquanto ela existir na caixa</td>
+      </tr>
+      <tr>
+        <td><strong>hCaptcha</strong> (Intuition Machines)</td>
+        <td>Operador — verifica que o envio não é automatizado</td>
+        <td>Dados técnicos do navegador e a interação com o desafio; não o conteúdo do formulário</td>
+      </tr>
+      <tr>
+        <td><strong>GitHub</strong> (Microsoft)</td>
+        <td>Hospedagem do site (GitHub Pages)</td>
+        <td>Registros de acesso ao site, conforme a prática do provedor</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Quando a conversa evolui e um <strong>auditor da nossa rede</strong> conduz
+  seu atendimento, ele lê o conteúdo do seu contato para preparar a reunião. Isso
+  é parte do serviço que você pediu, e está dito para não haver surpresa.</p>
+  <p>Dado nenhum sai daqui para anunciante, corretor de listas ou mercado de
+  dados. Nunca vendemos, alugamos ou cedemos. Só entregaríamos a autoridade
+  pública mediante ordem legal válida, e no limite exato dela.</p>
+
+  <h2 id="internacional">5. Transferência internacional</h2>
+  <div class="caixa atencao">
+    <span class="rotulo">Informação que a LGPD exige e que muitos sites omitem</span>
+    <p>O provedor do formulário <strong>opera servidores nos Estados
+    Unidos</strong> (região US-East, conforme a documentação pública dele,
+    consultada em 17/10/2026). Ou seja: ao enviar o formulário, <strong>seus
+    dados saem do Brasil</strong>.</p>
+    <p>A LGPD trata disso nos arts. 33 a 36, e você tem o direito de saber antes
+    de clicar, não depois. Se preferir não haver transferência internacional,
+    <strong>escreva direto para
+    <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a></strong> em vez
+    de usar o formulário — o resultado para você é o mesmo e o caminho é mais
+    curto.</p>
+  </div>
+  <p>Sobre o enquadramento dessa transferência, o que verificamos na documentação
+  pública do provedor em 17/10/2026: ele mantém um acordo de tratamento de dados
+  (<em>Data Processing Agreement</em>) em que figura como operador e o cliente
+  como controlador, e cita como leis de referência o GDPR europeu, o GDPR do
+  Reino Unido e a lei indiana de proteção de dados. <strong>A LGPD brasileira não
+  está entre as leis nomeadas nesse acordo</strong>, e o provedor declara
+  expressamente que não presta declarações jurídicas sobre adequação. Registramos
+  isso aqui em vez de afirmar uma conformidade que não foi demonstrada a nós —
+  essa é a razão de existir o parágrafo acima oferecendo o contato direto por
+  e-mail como alternativa.</p>
+  <p>O mesmo vale para o Gmail e para o hCaptcha, cujos tratamentos também
+  envolvem infraestrutura fora do Brasil.</p>
+
+  <h2 id="prazo">6. Por quanto tempo guardamos</h2>
+  <ul>
+    <li><strong>Contato que não virou negócio:</strong> apagamos em até
+    <strong>12 meses</strong> do último contato, ou antes, se você pedir.</li>
+    <li><strong>Contato que virou relação comercial:</strong> guardamos enquanto
+    a relação durar e pelo prazo em que a lei exigir a guarda de registros
+    fiscais e contratuais depois dela.</li>
+    <li><strong>No provedor do formulário:</strong> segundo a documentação
+    pública dele (17/10/2026), ele <strong>não armazena</strong> os envios — processa
+    e encaminha. Registros de servidor que possam conter dado pessoal são, pela
+    mesma documentação, apagados periodicamente (a cada dois meses).</li>
+    <li><strong>Pedido de exclusão:</strong> atendido em até
+    <strong>15 dias</strong>, que é o prazo do art. 19 da LGPD, normalmente bem
+    antes disso.</li>
+  </ul>
+
+  <h2 id="direitos">7. Seus direitos, e como exercê-los</h2>
+  <p>O art. 18 da LGPD lhe dá direito a <strong>confirmação</strong> de que
+  tratamos seus dados, <strong>acesso</strong> a eles,
+  <strong>correção</strong> do que estiver errado ou incompleto,
+  <strong>anonimização, bloqueio ou eliminação</strong> do que for desnecessário
+  ou excessivo, <strong>portabilidade</strong>,
+  <strong>informação</strong> sobre com quem compartilhamos, e
+  <strong>revogação do consentimento</strong> onde ele for a base.</p>
+  <p>Para exercer qualquer um deles, escreva para
+  <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a>. Não há formulário
+  obrigatório, não há exigência de documento antes da hora e não cobramos nada.
+  Só pediremos uma confirmação de identidade se o pedido envolver entregar dados
+  — porque entregar dado pessoal a quem se diz você, sem conferir, seria o
+  próprio vazamento.</p>
+  <p><strong>Prazo:</strong> respondemos em até <strong>15 dias</strong>.
+  Se discordar da nossa resposta, você pode reclamar à
+  <strong>ANPD</strong> — Autoridade Nacional de Proteção de Dados
+  (<a href="https://www.gov.br/anpd/" target="_blank" rel="noopener noreferrer">gov.br/anpd</a>).</p>
+
+  <h2 id="seguranca">8. Segurança</h2>
+  <p>O site é servido exclusivamente por <strong>HTTPS</strong>, e o envio do
+  formulário trafega cifrado. O acesso à caixa de e-mail que recebe os contatos é
+  protegido por senha forte e <strong>verificação em duas etapas</strong>. O
+  formulário é protegido contra envio automatizado.</p>
+  <p>Nenhuma medida torna um sistema inviolável, e quem afirma o contrário está
+  vendendo. Se houver incidente de segurança com risco relevante aos seus
+  dados, comunicaremos você e a ANPD, como manda o art. 48 da LGPD.</p>
+
+  <h2 id="menores">9. Crianças e adolescentes</h2>
+  <p>Este site se destina a profissionais e organizações. Não coletamos
+  intencionalmente dados de menores de 18 anos. Se tomarmos conhecimento de que
+  isso aconteceu, apagaremos o registro.</p>
+
+  <h2 id="mudancas">10. Mudanças nesta política</h2>
+  <p>Se esta política mudar, a data de "última atualização" no topo muda com ela.
+  Mudança que altere de forma significativa como tratamos dados já coletados será
+  comunicada por e-mail a quem já tiver contato ativo conosco — e não aplicada
+  retroativamente sem base legal para tanto.</p>
+  <p>Note que as afirmações sobre terceiros nesta página estão
+  <strong>datadas</strong> de propósito: a política de um provedor muda sem nos
+  avisar, e um texto que afirme no presente o que foi verdade meses atrás engana
+  sem querer. O que você lê aqui é o que apuramos na data indicada.</p>
+
+  <footer>
+    <p>Hormos &middot; Política de Privacidade &middot; Vigente desde 17/10/2026
+    &middot; Dúvidas: <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a>
+    &middot; <a href="/">Voltar ao início</a></p>
+  </footer>
+
+</div>
+</main>
+
+</body>
+</html>

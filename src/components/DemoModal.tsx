@@ -657,10 +657,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                 para responder a este contato</span> — base legal: LGPD, art. 7&ordm;, V
                 (procedimentos preliminares a pedido do titular). <span className="text-slate-400">Não
                 vendemos, alugamos nem cedemos seus dados.</span> Para o envio funcionar, a
-                mensagem trafega por um provedor de formulários que atua como operador sob
-                contrato, e é lida pela equipe de auditores que conduzirá seu atendimento.
+                mensagem trafega por um provedor de formulários que atua como operador, com
+                <span className="text-slate-400"> servidores nos Estados Unidos</span> — ou seja,
+                há transferência internacional (LGPD, arts. 33 a 36), e você tem o direito de
+                saber disso antes de clicar. Se preferir que não haja, escreva direto para{' '}
+                <a href="mailto:hormosgrc@gmail.com" className="text-slate-400 underline underline-offset-2 hover:text-white">hormosgrc@gmail.com</a>.
+                A mensagem é lida pela equipe de auditores que conduzirá seu atendimento.
                 Guardamos enquanto durar o contato comercial. Você pode pedir acesso, correção
-                ou exclusão a qualquer momento, respondendo ao e-mail que receber de nós.
+                ou exclusão a qualquer momento.{' '}
+                <a href="/privacidade.html" target="_blank" rel="noopener noreferrer" className="text-slate-400 underline underline-offset-2 hover:text-white">Política de Privacidade</a>.
               </p>
 
               <div className="flex items-center justify-between gap-3">
