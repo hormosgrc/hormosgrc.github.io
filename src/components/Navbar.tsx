@@ -61,12 +61,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
         </a>
 
         {/* Desktop Nav Items */}
-        <nav className="hidden xl:flex items-center gap-1 bg-slate-900/40 border border-white/10 rounded-full px-3 py-1.5 backdrop-blur-md">
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-900/40 border border-white/10 rounded-full px-3 py-1.5 backdrop-blur-md">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="px-2 py-1 text-xs font-medium text-slate-400 hover:text-blue-400 rounded-full hover:bg-white/5 transition-colors whitespace-nowrap"
+              className="px-1.5 xl:px-2 py-1 text-xs font-medium text-slate-400 hover:text-blue-400 rounded-full hover:bg-white/5 transition-colors whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -84,7 +84,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
             <button
               id="nav-community-btn"
               onClick={onOpenCommunityModal}
-              className="px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/50 hover:bg-slate-800/80 border border-white/10 rounded-full transition-all flex items-center gap-1.5 backdrop-blur-sm whitespace-nowrap"
+              /* Em lg o trilho de links entra e come 609 dos 960px úteis: não
+                 sobra para os dois botões. Sai ESTE, e não o de demonstração,
+                 porque a Edição Comunidade tem outras três portas na mesma
+                 página — o Hero, a seção de Planos e o rodapé — enquanto o
+                 agendamento só tem esta. Em xl, com 1216px, ele volta. */
+              className="flex lg:hidden xl:flex px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/50 hover:bg-slate-800/80 border border-white/10 rounded-full transition-all items-center gap-1.5 backdrop-blur-sm whitespace-nowrap"
             >
               <span>Edição Comunidade</span>
               <span className="text-[9px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded font-mono">Grátis</span>
@@ -99,8 +104,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
               {/* Mesma lógica do selo: o verbo cabe enquanto o trilho de links
                   não está lá, e cede em xl. A seta e a pílula azul seguram a
                   leitura de "chamada à ação" sozinhas. */}
-              <span className="xl:hidden">Agendar Demonstração</span>
-              <span className="hidden xl:inline">Demonstração</span>
+              <span className="lg:hidden">Agendar Demonstração</span>
+              <span className="hidden lg:inline">Demonstração</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -109,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
           <button
             id="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 rounded-xl bg-slate-900/60 border border-white/10 text-slate-300 hover:text-white backdrop-blur-md shrink-0"
+            className="lg:hidden p-2 rounded-xl bg-slate-900/60 border border-white/10 text-slate-300 hover:text-white backdrop-blur-md shrink-0"
             aria-label="Abrir menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -117,14 +122,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
         </div>
       </div>
 
-      {/* Gaveta — até xl, não até lg.
+      {/* Gaveta — abaixo de lg (1024px).
 
           A barra inteira EXIGIA 1367px e o modo desktop ligava em 1024px. Nos
           343px de diferença os dois botões saíam pela direita da janela, e
           como a página não rola na horizontal eles não ficavam só feios:
-          ficavam INALCANÇÁVEIS. Medido, não estimado — ver medir_barra.py. */}
+          ficavam INALCANÇÁVEIS.
+
+          O trilho volta a entrar em 1024 porque as peças foram enxugadas até
+          caber ali de verdade — não porque o número ficou bonito. Cada faixa
+          foi medida: 1024 tem 960px úteis, e a barra pede 929. */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#05070A]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-5 mt-3 space-y-4 animate-in slide-in-from-top duration-200">
+        <div className="lg:hidden bg-[#05070A]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-5 mt-3 space-y-4 animate-in slide-in-from-top duration-200">
           <div className="flex flex-col space-y-1.5">
             {navLinks.map((link) => (
               <a
