@@ -370,7 +370,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
      identidade é decoração. */
   const comandoVerificacao =
     'docker run --rm ghcr.io/sigstore/cosign/cosign:latest verify \\\n' +
-    '  ghcr.io/hormosgrc/hormos-portal:2.2.6 \\\n' +
+    '  ghcr.io/hormosgrc/hormos-portal:2.2.7 \\\n' +
     "  --certificate-identity 'sgduarte7@gmail.com' \\\n" +
     "  --certificate-oidc-issuer 'https://accounts.google.com'";
 
