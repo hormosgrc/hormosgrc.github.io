@@ -199,6 +199,29 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, initialPlan]);
 
+  // Esc fecha, e a página atrás para de rolar enquanto o modal está aberto.
+  //
+  // O Esc não é conforto: era a única saída que restava quando o cartão
+  // passava da altura da janela e levava o "×" para fora da tela — e ela não
+  // existia. Agora existem três (Esc, o "×" e o clique no fundo), e nenhuma
+  // depende de o conteúdo caber.
+  //
+  // A trava do fundo resolve o outro lado do mesmo problema: sem ela, rolar
+  // dentro do modal e chegar ao fim passa a rolar a página atrás, e a pessoa
+  // perde o lugar sem entender por quê. `overscroll-contain` no miolo segura
+  // o encadeamento; isto aqui segura a barra de rolagem do documento.
+  useEffect(() => {
+    if (!isOpen) return;
+    const naTecla = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const antes = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', naTecla);
+    return () => {
+      document.body.style.overflow = antes;
+      document.removeEventListener('keydown', naTecla);
+    };
+  }, [isOpen, onClose]);
+
   // O script do hCaptcha carrega async, então pode não estar pronto quando o
   // modal abre. Em vez de assumir, espera-o aparecer — e desiste depois de 10s
   // para não ficar um intervalo girando para sempre numa rede que o bloqueou.
@@ -358,16 +381,37 @@ export const DemoModal: React.FC<DemoModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl bg-slate-900/90 border border-white/10 rounded-[28px] shadow-2xl p-6 sm:p-8 overflow-hidden text-slate-100 backdrop-blur-2xl">
-        {/* Close button */}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      role="presentation"
+    >
+      {/* O cartão NUNCA passa da altura da janela, e o que não couber rola
+          dentro dele. Antes ele tinha `overflow-hidden` e altura livre: com
+          894px de conteúdo numa janela de 620px ele nascia com o topo em
+          -137px, cortado em cima E embaixo, sem rolagem em lugar nenhum — e
+          como o "×" é absoluto no topo do cartão, ele ia junto para fora da
+          tela. Não dava para ler, nem para fechar: só recarregando.
+
+          A altura máxima usa `dvh`, não `vh`: no celular a barra de endereço
+          entra e sai, e `vh` mede a janela SEM ela — o que devolveria o mesmo
+          corte justamente onde a tela é menor. */}
+      <div
+        className="relative w-full max-w-xl max-h-[calc(100dvh-2rem)] flex flex-col bg-slate-900/90 border border-white/10 rounded-[28px] shadow-2xl overflow-hidden text-slate-100 backdrop-blur-2xl"
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* Close button — fica FORA da área que rola, preso ao cartão, para
+            continuar alcançável por mais longo que o conteúdo seja. */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+          className="absolute top-5 right-5 z-10 p-2 rounded-full text-slate-400 hover:text-white bg-slate-900/70 hover:bg-white/10 backdrop-blur-sm transition-colors"
           aria-label="Fechar"
         >
           <X className="w-5 h-5" />
         </button>
+
+        <div className="overflow-y-auto overscroll-contain p-6 sm:p-8">
 
         {isCommunityModal ? (
           /* Community Edition Flow */
@@ -727,6 +771,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
             </div>
           </form>
         )}
+        </div>
       </div>
     </div>
   );
