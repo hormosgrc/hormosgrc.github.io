@@ -1,0 +1,689 @@
+<!doctype html>
+<!--
+  Guia de instalação e operação da Edição Comunidade.
+
+  POR QUE É HTML ESTÁTICO EM public/, como a privacidade.html. O site é uma SPA
+  de página única com âncoras; não há roteador. E um guia de instalação é
+  justamente o documento que a pessoa abre no celular enquanto mexe no servidor,
+  imprime, salva, ou cola num chamado — ele não pode depender de JavaScript para
+  existir. Em public/, o Vite copia o arquivo para a raiz do dist e ele é
+  servido em /instalacao.html sem depender de nada.
+
+  O botão "copiar" de cada bloco é inserido POR JavaScript, no fim do arquivo.
+  Sem JS, não aparece botão quebrado: o comando continua lá, selecionável.
+
+  TODO COMANDO DESTA PÁGINA FOI EXECUTADO antes de ser escrito aqui. Os de
+  operação (parar, iniciar, estado) foram verificados num ciclo completo da
+  pilha real, de FORA da pasta do projeto — inclusive com o Analista IA, que
+  está atrás de um `profile` do Compose e ainda assim volta com o `start`.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Instalação — Hormos</title>
+<meta name="description" content="Como instalar o Hormos Edição Comunidade no Windows (WSL), Linux e macOS, e como operar o appliance depois — parar, iniciar e acompanhar, sem saber Docker.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Mesmos tokens da privacidade.html — a marca é a mesma e a página é irmã.
+     Nenhum valor de cor ou de fonte fora daqui. */
+  :root{
+    --fundo:#05070A; --fundo-caixa:#0B1017; --borda:#1C2533;
+    --texto:#CBD5E1; --texto-forte:#F1F5F9; --texto-fraco:#94A3B8;
+    --marca:#60A5FA; --marca-forte:#2563EB; --alerta:#FBBF24; --ok:#34D399;
+    --fonte:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --t-nota:11px; --t-mini:12px; --t-mono:13px; --t-peq:14px;
+    --t-corpo:15px; --t-base:16px;
+    --t-h2:clamp(18px,3.2vw,21px); --t-h1:clamp(26px,5.2vw,38px);
+    --veu:rgba(11,16,23,.72); --realce:rgba(37,99,235,.1);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--fundo); color:var(--texto);
+    font-family:var(--fonte); font-size:var(--t-base); line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .faixa{
+    border-bottom:1px solid var(--borda); background:var(--veu);
+    backdrop-filter:blur(8px); position:sticky; top:0; z-index:10;
+  }
+  /* Um pouco mais larga que a política: aqui há blocos de comando, e quebrar
+     uma linha de terminal no meio é o jeito mais fácil de alguém colar errado. */
+  .limite{max-width:840px; margin:0 auto; padding:0 16px}
+  .faixa .limite{display:flex; align-items:center; gap:12px; min-height:60px}
+  .voltar{
+    color:var(--texto-fraco); text-decoration:none; font-size:var(--t-peq);
+    font-weight:500; display:inline-flex; align-items:center; gap:7px;
+    padding:7px 11px; margin-left:-11px; border-radius:7px;
+  }
+  .voltar:hover{color:var(--texto-forte); background:var(--realce)}
+  .voltar:focus-visible{outline:2px solid var(--marca); outline-offset:2px}
+  main{padding:40px 0 80px}
+  h1{
+    font-size:var(--t-h1); line-height:1.18; margin:0 0 10px;
+    color:var(--texto-forte); font-weight:800; letter-spacing:-.02em;
+  }
+  .datas{
+    font-family:var(--mono); font-size:var(--t-mini); color:var(--texto-fraco);
+    margin:0 0 30px; padding-bottom:22px; border-bottom:1px solid var(--borda);
+  }
+  h2{
+    font-size:var(--t-h2); margin:46px 0 12px; color:var(--texto-forte);
+    font-weight:700; letter-spacing:-.01em; scroll-margin-top:76px;
+  }
+  h3{font-size:var(--t-base); margin:28px 0 8px; color:var(--texto-forte); font-weight:600; scroll-margin-top:76px}
+  p,li{font-size:var(--t-corpo)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px; padding-left:22px}
+  li{margin-bottom:7px}
+  strong{color:var(--texto-forte); font-weight:600}
+  a{color:var(--marca); text-decoration:underline; text-underline-offset:2px}
+  a:hover{color:var(--texto-forte)}
+  a:focus-visible{outline:2px solid var(--marca); outline-offset:2px; border-radius:2px}
+  code{font-family:var(--mono); font-size:var(--t-mono); color:var(--marca)}
+  .caixa{
+    background:var(--fundo-caixa); border:1px solid var(--borda);
+    border-radius:11px; padding:17px 19px; margin:0 0 20px;
+  }
+  .caixa p:last-child,.caixa ul:last-child,.caixa ol:last-child{margin-bottom:0}
+  .atencao{border-left:3px solid var(--alerta)}
+  .recomendado{border-left:3px solid var(--ok)}
+  .caixa .rotulo{
+    display:block; font-family:var(--mono); font-size:var(--t-nota); letter-spacing:.07em;
+    text-transform:uppercase; margin-bottom:7px; font-weight:500; color:var(--texto-fraco);
+  }
+  .atencao .rotulo{color:var(--alerta)}
+  .recomendado .rotulo{color:var(--ok)}
+  .indice ol{margin:0; padding-left:20px; font-size:var(--t-peq)}
+  .indice li{margin-bottom:4px}
+  /* Bloco de comando. O <pre> rola por dentro em vez de empurrar a página —
+     numa tela de telefone, uma linha de terminal estoura qualquer largura. */
+  .cmd{position:relative; margin:0 0 20px}
+  .cmd pre{
+    margin:0; padding:15px 17px; background:#000; border:1px solid var(--borda);
+    border-radius:11px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    font-family:var(--mono); font-size:var(--t-mono); line-height:1.65;
+    color:var(--ok); white-space:pre;
+  }
+  /* O botão fica ACIMA do bloco, nunca sobre ele. Medido em 390px: sobreposto
+     no canto, ele tapava o fim do comando — e o <pre> rola por dentro, então
+     o texto ainda passaria por baixo dele ao arrastar. O espaço só é reservado
+     quando o botão existe de fato (a classe vem do JS), para não abrir um vão
+     em cima do bloco em navegador sem script. */
+  .cmd.tem-copia{padding-top:32px}
+  .cmd .copiar{
+    position:absolute; top:0; right:0; padding:5px 11px; cursor:pointer;
+    font-family:var(--mono); font-size:var(--t-nota); font-weight:500;
+    color:var(--texto-fraco); background:var(--fundo-caixa);
+    border:1px solid var(--borda); border-radius:7px;
+  }
+  .cmd .copiar:hover{color:var(--texto-forte); border-color:var(--marca)}
+  .cmd .copiar:focus-visible{outline:2px solid var(--marca); outline-offset:2px}
+  .legenda{font-size:var(--t-peq); color:var(--texto-fraco); margin:-12px 0 20px}
+  .rolagem{overflow-x:auto; margin:0 0 20px; -webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse; width:100%; min-width:460px; font-size:var(--t-peq)}
+  /* Tabela de duas colunas com texto curto não precisa do piso de 460px: em
+     390 ele a obriga a rolar e o corte cai no meio de uma palavra, que parece
+     defeito. Sem o piso, ela quebra a linha e cabe. */
+  table.compacta{min-width:0}
+  th,td{text-align:left; padding:9px 11px; border-bottom:1px solid var(--borda); vertical-align:top}
+  th{color:var(--texto-forte); font-weight:600; font-size:var(--t-mono); white-space:nowrap}
+  td code{white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  .passos{counter-reset:passo; list-style:none; padding-left:0}
+  .passos>li{
+    counter-increment:passo; position:relative; padding-left:38px; margin-bottom:20px;
+  }
+  .passos>li::before{
+    content:counter(passo); position:absolute; left:0; top:1px;
+    width:26px; height:26px; border-radius:50%; display:flex;
+    align-items:center; justify-content:center;
+    background:var(--realce); border:1px solid var(--marca-forte); color:var(--marca);
+    font-family:var(--mono); font-size:var(--t-mini); font-weight:500;
+  }
+  footer{border-top:1px solid var(--borda); margin-top:52px; padding-top:22px}
+  footer p{font-size:var(--t-mono); color:var(--texto-fraco)}
+  @media print{
+    :root{--fundo:#fff; --fundo-caixa:#fff; --borda:#CBD5E1;
+          --texto:#1E293B; --texto-forte:#000; --texto-fraco:#475569; --marca:#1D4ED8}
+    .faixa{display:none} main{padding:0}
+    .caixa,.cmd{break-inside:avoid} h2,h3{break-after:avoid}
+    .cmd pre{background:#F1F5F9; color:#0F172A}
+    .cmd .copiar{display:none}
+    a{color:#1D4ED8}
+    a[href^="http"]::after{content:" (" attr(href) ")"; font-size:var(--t-nota); color:#475569}
+  }
+</style>
+</head>
+<body>
+
+<div class="faixa">
+  <div class="limite">
+    <a class="voltar" href="/" aria-label="Voltar para a página inicial do Hormos">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Hormos
+    </a>
+  </div>
+</div>
+
+<main>
+<div class="limite">
+
+  <h1>Guia de instalação e operação</h1>
+  <p class="datas">
+    Edição Comunidade &middot; versão 2.2.5 &middot; atualizado em 26/10/2026
+  </p>
+
+  <div class="caixa">
+    <p><strong>O resumo honesto, antes dos detalhes.</strong> A Edição
+    Comunidade não é demonstração nem período de teste: é o produto instalado
+    na sua máquina, de graça, sem prazo e sem cadastro. <strong>Instalar já é receber</strong> — não há etapa de
+    liberação depois. O licenciamento só entra se um dia você quiser as edições pagas, e é um campo de chave colado
+    dentro do próprio sistema.</p>
+    <p>Você não precisa saber Docker para usar o Hormos. Precisa de três
+    comandos, e eles estão na <a href="#operar">seção 6</a>.</p>
+  </div>
+
+  <nav class="caixa indice" aria-label="Índice">
+    <ol>
+      <li><a href="#requisitos">O que você precisa antes de começar</a></li>
+      <li><a href="#windows">Windows — o caminho recomendado</a></li>
+      <li><a href="#linux">Linux</a></li>
+      <li><a href="#macos">macOS</a></li>
+      <li><a href="#primeiro-acesso">O primeiro acesso</a></li>
+      <li><a href="#operar">Depois de instalado — parar, iniciar e acompanhar</a></li>
+      <li><a href="#assinatura">Conferir a assinatura antes de rodar</a></li>
+      <li><a href="#licenciar">Licenciar depois, se quiser</a></li>
+      <li><a href="#problemas">Quando alguma coisa não funciona</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="requisitos">1. O que você precisa antes de começar</h2>
+
+  <p>O Hormos roda inteiro em contêineres. O instalador cuida de tudo —
+  inclusive de instalar o Docker, se ele não existir.</p>
+
+  <div class="rolagem">
+  <table>
+    <thead><tr><th></th><th>Sem o Analista IA</th><th>Com o Analista IA</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Memória livre<br>para o Docker</strong></td>
+        <td>2 GB</td>
+        <td><strong>8 GB</strong> — o que exige um aparelho de <strong>12 GB</strong>
+        para avaliação e <strong>16 GB</strong> em produção, porque os 8 GB são o
+        que sobra depois do sistema operacional</td>
+      </tr>
+      <tr><td><strong>Disco</strong></td><td>4 GB</td><td>16 a 20 GB</td></tr>
+      <tr>
+        <td><strong>Processador</strong></td>
+        <td>2 núcleos</td>
+        <td>Core i5 de 11ª geração / Ryzen 5, 4 núcleos ou mais.
+        <strong>Placa de vídeo não é necessária.</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Sistema</strong></td>
+        <td colspan="2">Windows 10/11 com WSL2, Linux (Ubuntu/Debian) ou macOS</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>O <strong>motor semântico</strong> — correlação por significado, análise de
+  GAP, índices e relatórios — funciona inteiro <em>sem</em> LLM. O Analista IA é
+  o segundo estágio, opcional, e é ele que pede os 8 GB.</p>
+
+  <div class="caixa atencao">
+    <span class="rotulo">Não existe IA reduzida</span>
+    <p>O Hormos usa <strong>um único modelo</strong> para todos os pareceres.
+    Abaixo de 8 GB o instalador <strong>recusa a IA e segue sem ela</strong>, em
+    vez de instalar um modelo menor que devolveria parecer pior com a nossa
+    marca. Essa checagem acontece <strong>antes</strong> de qualquer download.</p>
+  </div>
+
+  <h2 id="windows">2. Windows — o caminho recomendado</h2>
+
+  <div class="caixa recomendado">
+    <span class="rotulo">Nossa recomendação</span>
+    <p><strong>No Windows, instale pelo WSL</strong> — o subsistema Linux que já
+    vem no próprio Windows — e não pelo Docker Desktop.</p>
+  </div>
+
+  <p>Os dois funcionam, e o Docker Desktop é suportado. A recomendação tem dois
+  motivos concretos:</p>
+
+  <ul>
+    <li><strong>Licença.</strong> O Docker Desktop exige assinatura comercial
+    para empresas acima de certo porte. O Docker Engine dentro do WSL é open
+    source e não tem essa exigência — você não herda um custo de licença só por
+    avaliar o Hormos.</li>
+    <li><strong>É onde testamos.</strong> O WSL é o caminho que o nosso
+    instalador exercita em ambiente automatizado a cada versão. Problema que
+    aparece ali, a gente vê antes de você.</li>
+  </ul>
+
+  <p>O WSL encaminha <code>localhost</code> sozinho, então o navegador do
+  Windows abre <code>https://localhost</code> normalmente — você não vai digitar
+  endereço de máquina virtual nem número de IP em lugar nenhum.</p>
+
+  <h3 id="windows-automatico">Caminho A — automático (recomendado)</h3>
+
+  <p>Um arquivo faz tudo: instala o WSL2, instala o Docker Engine dentro dele,
+  instala o Hormos e ainda registra o certificado interno no Windows, para o
+  navegador não reclamar.</p>
+
+  <ol class="passos">
+    <li>
+      <p>Baixe o projeto. Na página do repositório, use
+      <strong>Code → Download ZIP</strong>, ou, se você já tem o Git:</p>
+      <div class="cmd"><pre>git clone https://github.com/hormosgrc/hormos.git</pre></div>
+      <p class="legenda">Repositório:
+      <a href="https://github.com/hormosgrc/hormos">github.com/hormosgrc/hormos</a></p>
+    </li>
+    <li>
+      <p><strong>Descompacte o ZIP</strong> (se baixou por ZIP) numa pasta
+      qualquer, por exemplo <code>C:\hormos</code>. Evite pasta sincronizada com
+      OneDrive.</p>
+    </li>
+    <li>
+      <p>Clique com o <strong>botão direito</strong> em <code>install.bat</code>
+      e escolha <strong>Executar como administrador</strong>. Ele precisa disso
+      para habilitar o WSL e registrar o certificado.</p>
+    </li>
+    <li>
+      <p><strong>Se o WSL ainda não existia na máquina, o instalador vai pedir
+      para reiniciar o Windows.</strong> Reinicie e execute o
+      <code>install.bat</code> de novo — ele continua de onde parou, nada se
+      perde.</p>
+    </li>
+    <li>
+      <p>Espere. Na primeira vez ele baixa o Ubuntu, o Docker e a imagem do
+      Hormos; em conexão doméstica isso leva alguns minutos. Ao terminar, ele
+      abre <code>https://localhost</code> sozinho e mostra o
+      <strong>usuário e a senha</strong> do primeiro acesso.</p>
+    </li>
+  </ol>
+
+  <div class="caixa atencao">
+    <span class="rotulo">Anote antes de fechar</span>
+    <p>A senha do primeiro acesso é <strong>gerada nessa instalação</strong> e
+    aparece uma única vez na tela. Ela é de <strong>uso único</strong>: o
+    sistema vai exigir que você defina a sua no primeiro login. Veja a
+    <a href="#primeiro-acesso">seção 5</a>.</p>
+  </div>
+
+  <p>Por esse caminho, o Hormos fica instalado <strong>dentro do WSL</strong>, na
+  pasta <code>/opt/hormos</code>. Guarde esse caminho: ele aparece de novo na
+  <a href="#operar">seção 6</a>.</p>
+
+  <h3 id="windows-manual">Caminho B — passo a passo manual</h3>
+
+  <p>Use este se a política da sua empresa não permitir executar um
+  <code>.bat</code> como administrador, ou se você simplesmente prefere ver cada
+  comando. É o mesmo resultado.</p>
+
+  <ol class="passos">
+    <li>
+      <p><strong>Instale o WSL.</strong> Abra o <strong>PowerShell como
+      administrador</strong> e rode:</p>
+      <div class="cmd"><pre>wsl --install -d Ubuntu</pre></div>
+      <p>Reinicie o Windows quando ele pedir. Ao reabrir, o Ubuntu pede para
+      criar um usuário e uma senha do Linux — anote, você vai usar a senha nos
+      comandos com <code>sudo</code>.</p>
+    </li>
+    <li>
+      <p><strong>Ligue o systemd</strong> dentro do Ubuntu. Sem ele, o serviço do
+      Docker não sobe sozinho, e o Hormos não volta depois que você reinicia a
+      máquina. No terminal do <strong>Ubuntu</strong>:</p>
+      <div class="cmd"><pre>sudo sh -c 'printf "[boot]\nsystemd=true\n" &gt;&gt; /etc/wsl.conf'</pre></div>
+      <p>Depois, feche o Ubuntu e, no <strong>PowerShell</strong>, desligue o
+      WSL uma vez para a mudança valer:</p>
+      <div class="cmd"><pre>wsl --shutdown</pre></div>
+      <p>Reabra o Ubuntu em seguida.</p>
+    </li>
+    <li>
+      <p><strong>Instale o Docker Engine</strong> dentro do Ubuntu:</p>
+      <div class="cmd"><pre>curl -fsSL https://get.docker.com | sudo sh</pre></div>
+      <p>Depois dê ao seu usuário permissão de usar o Docker:</p>
+      <div class="cmd"><pre>sudo usermod -aG docker $USER</pre></div>
+      <p><strong>Feche o terminal do Ubuntu e abra de novo.</strong> Isso não é
+      zelo: a permissão de grupo só passa a valer numa sessão nova, e esse é o
+      tropeço mais comum de toda esta página.</p>
+    </li>
+    <li>
+      <p><strong>Confirme que o Docker responde:</strong></p>
+      <div class="cmd"><pre>docker ps</pre></div>
+      <p>Se aparecer uma tabela vazia, está certo. Se disser
+      <em>permission denied</em>, o terminal ainda é o antigo — feche e abra de
+      novo. Se disser <em>Cannot connect</em>, suba o serviço com
+      <code>sudo service docker start</code>.</p>
+    </li>
+    <li>
+      <p><strong>Baixe e instale o Hormos:</strong></p>
+      <div class="cmd"><pre>git clone https://github.com/hormosgrc/hormos.git
+cd hormos
+./install.sh</pre></div>
+      <p>O instalador pergunta se o ambiente é local ou com domínio próprio, e
+      se você quer o Analista IA. Para avaliação, aceite os padrões.</p>
+    </li>
+    <li>
+      <p>Abra <strong>https://localhost</strong> no navegador do Windows e siga
+      para a <a href="#primeiro-acesso">seção 5</a>.</p>
+    </li>
+  </ol>
+
+  <h3 id="windows-desktop">Se você já usa Docker Desktop</h3>
+
+  <p>Também funciona, e nada precisa ser desinstalado. Ligue a integração em
+  <em>Settings → Resources → WSL integration</em>, abra o Ubuntu e rode o
+  <code>./install.sh</code> do passo 5 acima. O <code>docker</code> de dentro do
+  WSL passa a falar com o daemon do Windows, e nada é instalado no Linux.</p>
+
+  <p>Se você ainda não tem Docker nenhum e quer o Desktop mesmo assim, ele está
+  em <a href="https://www.docker.com/products/docker-desktop/">docker.com</a>.
+  Confira antes se a sua empresa se enquadra na exigência de assinatura
+  comercial dele.</p>
+
+  <h2 id="linux">3. Linux (Ubuntu/Debian)</h2>
+
+  <div class="cmd"><pre>git clone https://github.com/hormosgrc/hormos.git
+cd hormos
+./install.sh</pre></div>
+
+  <p>O instalador verifica os pré-requisitos e orienta se faltar algum. Se
+  quiser adiantá-los:</p>
+
+  <div class="cmd"><pre>sudo apt-get install -y docker.io docker-compose-v2 python3 openssl
+sudo usermod -aG docker $USER</pre></div>
+
+  <p>Depois do <code>usermod</code>, <strong>abra um terminal novo</strong> —
+  permissão de grupo é fixada no login e não vale para a sessão em curso. O
+  instalador detecta isso e se reabre sozinho dentro do grupo; se por algum
+  motivo não conseguir, ele diz o motivo e mostra o comando exato a rodar.</p>
+
+  <h2 id="macos">4. macOS</h2>
+
+  <p>Instale o <a href="https://www.docker.com/products/docker-desktop/">Docker
+  Desktop</a>, abra-o uma vez para o motor subir, e depois:</p>
+
+  <div class="cmd"><pre>git clone https://github.com/hormosgrc/hormos.git
+cd hormos
+./install.sh</pre></div>
+
+  <p>No macOS não há alternativa ao Docker Desktop equivalente à do WSL, então
+  aqui ele é o caminho normal.</p>
+
+  <h2 id="primeiro-acesso">5. O primeiro acesso</h2>
+
+  <p>Abra <strong><a href="https://localhost">https://localhost</a></strong>.
+  O endereço <code>http://localhost</code> e a porta <code>:8080</code>
+  redirecionam para lá.</p>
+
+  <div class="caixa atencao">
+    <span class="rotulo">A senha vale para um acesso só</span>
+    <p>O instalador imprime o usuário e a senha no fim. Essa senha é
+    <strong>gerada na sua instalação</strong> — ninguém mais a conhece, nem nós
+    — e o sistema <strong>exige que você defina a sua no primeiro login</strong>.
+    A tela de troca de senha aparecendo é o comportamento certo, não um erro.</p>
+    <p>Por isso: <strong>feche o terminal</strong> quando terminar, e não cole a
+    saída da instalação em e-mail ou chamado de suporte sem apagar essa linha.
+    Ela fica no histórico da janela.</p>
+  </div>
+
+  <p><strong>Aviso de certificado?</strong> O appliance cria uma autoridade
+  certificadora local e a instala no seu sistema, justamente para o HTTPS
+  funcionar sem aviso. No Windows isso é feito no repositório do
+  <strong>Windows</strong> — é lá que o navegador roda. Se mesmo assim o aviso
+  aparecer, <strong>feche o navegador por completo</strong> (todas as janelas) e
+  abra de novo: ele relê os certificados ao iniciar.</p>
+
+  <p>Sem chave de licença, o sistema sobe na <strong>Edição Comunidade</strong>,
+  com a ISO/IEC 27001 completa. Não há nada a ativar.</p>
+
+  <h2 id="operar">6. Depois de instalado — parar, iniciar e acompanhar</h2>
+
+  <p>Esta seção é para quem nunca usou Docker. São três comandos, e eles
+  funcionam <strong>de qualquer pasta</strong> — você não precisa voltar para o
+  diretório da instalação.</p>
+
+  <h3>Onde a instalação mora</h3>
+
+  <div class="rolagem">
+  <table class="compacta">
+    <thead><tr><th>Como você instalou</th><th>Onde abrir o terminal</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Windows, caminho A (<code>install.bat</code>)</td>
+        <td>Abra o aplicativo <strong>Ubuntu</strong> no menu Iniciar. A
+        instalação fica em <code>/opt/hormos</code>.</td>
+      </tr>
+      <tr>
+        <td>Windows, caminho B (manual)</td>
+        <td>Abra o aplicativo <strong>Ubuntu</strong>. A instalação fica na pasta
+        <code>hormos</code> dentro da sua pasta pessoal.</td>
+      </tr>
+      <tr>
+        <td>Linux / macOS</td>
+        <td>Seu terminal de sempre.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Os três comandos</h3>
+
+  <p><strong>Ver se está no ar:</strong></p>
+  <div class="cmd"><pre>docker compose -p sgsi-appliance-core ps</pre></div>
+  <p class="legenda">Lista cada peça e o estado dela. <code>Up</code> é no ar;
+  <code>Exited</code> é parada.</p>
+
+  <p><strong>Parar tudo</strong> (libera a memória da máquina; nada é apagado):</p>
+  <div class="cmd"><pre>docker compose -p sgsi-appliance-core stop</pre></div>
+
+  <p><strong>Ligar de volta:</strong></p>
+  <div class="cmd"><pre>docker compose -p sgsi-appliance-core start</pre></div>
+
+  <div class="caixa">
+    <p><strong>Parar não apaga nada.</strong> Seus dados ficam num volume do
+    Docker, separado dos contêineres. Pode parar e ligar à vontade: o sistema
+    volta exatamente como estava, com riscos, políticas, evidências e usuários
+    no lugar.</p>
+    <p>E uma vez parado, <strong>fica parado</strong> — inclusive depois de
+    reiniciar a máquina — até você mandar ligar. Isso é de propósito: quem
+    desligou quer que continue desligado.</p>
+  </div>
+
+  <h3>As peças, e o que cada uma faz</h3>
+
+  <p>Você não precisa decorar isto. Serve para quando algo aparecer
+  <code>Exited</code> na listagem e você quiser saber o que é.</p>
+
+  <div class="rolagem">
+  <table class="compacta">
+    <thead><tr><th>Nome</th><th>O que é</th></tr></thead>
+    <tbody>
+      <tr><td><code>sgsi_portal</code></td><td>O Hormos em si — as telas, os motores, os relatórios</td></tr>
+      <tr><td><code>sgsi_postgres</code></td><td>O banco de dados. <strong>É aqui que os seus dados vivem.</strong></td></tr>
+      <tr><td><code>sgsi_keycloak</code></td><td>O login: usuários, senhas, SSO e MFA</td></tr>
+      <tr><td><code>sgsi_caddy</code></td><td>A porta de entrada HTTPS (é quem atende o <code>https://localhost</code>)</td></tr>
+      <tr><td><code>sgsi_oauth2_portal</code></td><td>O porteiro entre a entrada e o portal — garante que ninguém passe sem login</td></tr>
+      <tr><td><code>sgsi_configurator</code></td><td>Aplica domínio e certificado próprios quando você pede pela área administrativa</td></tr>
+      <tr><td><code>sgsi_ollama</code></td><td>O Analista IA. <strong>Só existe se você instalou com IA.</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Quando precisar de mais</h3>
+
+  <p><strong>Reiniciar tudo</strong> (equivale a parar e ligar):</p>
+  <div class="cmd"><pre>docker compose -p sgsi-appliance-core restart</pre></div>
+
+  <p><strong>Ver o que o sistema está fazendo</strong>, em tempo real — é o que
+  o suporte vai pedir se você abrir um chamado. Saia com <code>Ctrl+C</code>:</p>
+  <div class="cmd"><pre>docker compose -p sgsi-appliance-core logs -f --tail=100 sgsi-portal</pre></div>
+
+  <p><strong>Atualizar para uma versão nova</strong> — da pasta da instalação,
+  depois de baixar o código novo:</p>
+  <div class="cmd"><pre>cd /opt/hormos        # ou a pasta onde você instalou
+git pull
+docker compose pull
+docker compose up -d</pre></div>
+  <p class="legenda">Os dados são preservados: só os contêineres são trocados.</p>
+
+  <p><strong>Remover o appliance</strong>, mantendo os dados para uma
+  reinstalação futura:</p>
+  <div class="cmd"><pre>cd /opt/hormos        # ou a pasta onde você instalou
+docker compose down</pre></div>
+
+  <div class="caixa atencao">
+    <span class="rotulo">Este apaga de verdade</span>
+    <p>Acrescentar <code>-v</code> ao comando acima
+    (<code>docker compose down -v</code>) <strong>remove também os volumes</strong>
+    — ou seja, apaga o banco de dados e tudo o que você registrou. Não há
+    desfazer. Use apenas se quiser mesmo começar do zero.</p>
+  </div>
+
+  <h2 id="assinatura">7. Conferir a assinatura antes de rodar</h2>
+
+  <p>Num produto de segurança, "confie em mim" não é resposta. A imagem do
+  Hormos é assinada com <strong>cosign keyless</strong> (Sigstore), e um registro
+  público de transparência guarda a prova. Você pode conferir
+  <strong>antes</strong> de instalar, sem instalar o cosign — só com o Docker que
+  já vai usar:</p>
+
+  <div class="cmd"><pre>docker run --rm ghcr.io/sigstore/cosign/cosign:latest verify \
+  ghcr.io/hormosgrc/hormos-portal:2.2.5 \
+  --certificate-identity 'sgduarte7@gmail.com' \
+  --certificate-oidc-issuer 'https://accounts.google.com'</pre></div>
+
+  <p>A identidade do assinante está <strong>fixada no comando de propósito</strong>.
+  Verificar sem ela provaria apenas que a imagem foi assinada por
+  <em>alguém</em> — e quem publicasse a própria imagem, assinada com a própria
+  conta, passaria no teste. Assinatura que não prende identidade é decoração.</p>
+
+  <h2 id="licenciar">8. Licenciar depois, se quiser</h2>
+
+  <p>A Edição Comunidade não expira e não pede chave. Se um dia você quiser as
+  edições pagas — LGPD, CIS, NIST, COBIT, ISO 42001, BACEN, iGovTIC-JUD, modo
+  auditor, API — o caminho é:</p>
+
+  <ol>
+    <li>Fale com a gente por <a href="/#planos">Planos</a> ou em
+    <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a>.</li>
+    <li>Você recebe uma <strong>chave de licença</strong>.</li>
+    <li>Cole a chave dentro do próprio sistema, na área administrativa.</li>
+  </ol>
+
+  <p>Nada é reinstalado, nenhum dado se perde, e o appliance continua
+  <strong>offline</strong>: a chave é verificada localmente, por assinatura
+  digital, sem consultar servidor nenhum.</p>
+
+  <h2 id="problemas">9. Quando alguma coisa não funciona</h2>
+
+  <h3>Reiniciei o Windows e o https://localhost não responde</h3>
+  <p>É o caso mais comum, e não é defeito. <strong>O WSL não roda em segundo
+  plano sozinho</strong> — ele sobe quando você abre uma sessão. Abra o
+  aplicativo <strong>Ubuntu</strong> no menu Iniciar, espere alguns segundos e
+  recarregue a página. Com o systemd ligado (o instalador faz isso), o Docker
+  sobe junto e os contêineres voltam sozinhos.</p>
+  <p>Se ainda assim não voltarem, confira o estado e ligue:</p>
+  <div class="cmd"><pre>docker compose -p sgsi-appliance-core ps
+docker compose -p sgsi-appliance-core start</pre></div>
+
+  <h3>"permission denied" ao rodar docker</h3>
+  <p>Você está no grupo <code>docker</code>, mas o terminal é anterior a isso —
+  credencial de grupo é fixada no login. <strong>Feche e abra o terminal.</strong>
+  Se não resolver, rode <code>newgrp docker</code> e repita o comando.</p>
+
+  <h3>"Cannot connect to the Docker daemon"</h3>
+  <p>Aqui o serviço está mesmo parado — é diferente do caso acima. No WSL:</p>
+  <div class="cmd"><pre>sudo service docker start</pre></div>
+  <p>Se precisar fazer isso toda vez, o systemd não está ligado: volte ao
+  <a href="#windows-manual">passo 2 do caminho B</a>.</p>
+
+  <h3>O navegador insiste no aviso de certificado</h3>
+  <p>Feche o navegador <strong>por completo</strong> — todas as janelas, não só a
+  aba — e abra de novo. Navegador relê os certificados do sistema só ao iniciar.
+  Se persistir, rode <code>sudo ./scripts/confiar-ca.sh</code> da pasta da
+  instalação.</p>
+
+  <h3>A instalação parou dizendo que falta memória</h3>
+  <p>É a checagem de RAM, e ela acontece <strong>antes</strong> de qualquer
+  download, de propósito. No WSL a memória não se ajusta no Docker Desktop: crie
+  ou edite o arquivo <code>.wslconfig</code> na sua pasta de usuário do Windows
+  (<code>C:\Users\SeuNome\.wslconfig</code>) com:</p>
+  <div class="cmd"><pre>[wsl2]
+memory=12GB</pre></div>
+  <p>Depois rode <code>wsl --shutdown</code> no PowerShell e reabra o Ubuntu.
+  Ou simplesmente instale <strong>sem o Analista IA</strong>: o motor semântico,
+  que é o que faz a correlação, funciona inteiro sem ele.</p>
+
+  <h3>Nada disso resolveu</h3>
+  <p>Escreva para <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a>
+  com a saída do comando de estado e das últimas linhas do log (os dois estão na
+  <a href="#operar">seção 6</a>). <strong>Antes de colar, apague a linha da senha
+  do administrador</strong>, se ela estiver no meio.</p>
+
+  <footer>
+    <p>Hormos — appliance de GRC auto-hospedado.
+    <a href="/">Página inicial</a> &middot;
+    <a href="https://github.com/hormosgrc/hormos">Repositório</a> &middot;
+    <a href="/privacidade.html">Política de Privacidade</a></p>
+  </footer>
+
+</div>
+</main>
+
+<script>
+/* Botão "copiar" inserido por JS, e só por JS: sem script não aparece botão
+   nenhum, e o comando continua lá para seleção manual. Progressive
+   enhancement — a página é um guia de instalação, e tem de funcionar no
+   navegador restrito de uma máquina corporativa.
+
+   A API de área de transferência exige contexto seguro (HTTPS); em file://
+   ela não existe. Daí o try/catch com retorno visual honesto: se não deu,
+   não diz "Copiado!". */
+(function () {
+  var blocos = document.querySelectorAll('.cmd');
+  if (!blocos.length || !navigator.clipboard) return;
+
+  blocos.forEach(function (bloco) {
+    var pre = bloco.querySelector('pre');
+    if (!pre) return;
+
+    var botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'copiar';
+    botao.textContent = 'copiar';
+    botao.setAttribute('aria-label', 'Copiar comando');
+
+    botao.addEventListener('click', function () {
+      /* textContent, não innerHTML: o &gt;&gt; do comando do systemd precisa
+         chegar à área de transferência como >>, não como entidade. */
+      navigator.clipboard.writeText(pre.textContent.trim()).then(
+        function () {
+          botao.textContent = 'copiado';
+          setTimeout(function () { botao.textContent = 'copiar'; }, 2000);
+        },
+        function () {
+          botao.textContent = 'copie à mão';
+          setTimeout(function () { botao.textContent = 'copiar'; }, 2500);
+        }
+      );
+    });
+
+    bloco.classList.add('tem-copia');
+    bloco.appendChild(botao);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -386,11 +386,33 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               Você pode rodar o Hormos imediatamente em sua infraestrutura utilizando o container Docker oficial com a ISO/IEC 27001 completa e exportações CSV liberadas:
             </p>
 
+            {/* O modal mostra o atalho; o GUIA mostra o caminho inteiro —
+                Windows pelo WSL, primeiro acesso, e como parar e iniciar o
+                appliance depois. Um comando de uma linha não serve a quem vai
+                homologar numa máquina Windows, e era só isso que existia. */}
+            <a
+              href="/instalacao.html"
+              className="flex items-center justify-between gap-3 p-4 rounded-2xl bg-blue-600/10 border border-blue-500/30 hover:bg-blue-600/20 hover:border-blue-500/50 transition-all group"
+            >
+              <span className="flex items-center gap-3">
+                <span className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/25 flex items-center justify-center text-blue-400 shrink-0">
+                  <Layers className="w-4 h-4" />
+                </span>
+                <span className="block">
+                  <span className="block text-xs font-bold text-white">Guia de instalação e operação</span>
+                  <span className="block text-[11px] text-slate-400 leading-snug">
+                    Passo a passo no Windows (WSL), Linux e macOS — e como parar e iniciar depois
+                  </span>
+                </span>
+              </span>
+              <ArrowRight className="w-4 h-4 text-blue-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+
             <div className="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
               <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
                 <span className="flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5 text-blue-400" />
-                  Comando Docker Run:
+                  Linux e macOS:
                 </span>
                 <button
                   onClick={handleCopyDocker}
@@ -403,6 +425,18 @@ export const DemoModal: React.FC<DemoModalProps> = ({
               <pre className="p-3 bg-black/60 rounded-xl text-xs font-mono text-blue-300 overflow-x-auto border border-white/5">
                 git clone https://github.com/hormosgrc/hormos.git &amp;&amp; cd hormos &amp;&amp; ./install.sh
               </pre>
+              {/* No Windows o atalho acima não serve, e dizer isso aqui evita
+                  que alguém cole um comando de shell no PowerShell e conclua
+                  que o produto não instala. */}
+              <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
+                <span className="text-slate-200 font-semibold">No Windows</span>, o caminho
+                recomendado é o <span className="text-slate-200">WSL</span> — sem depender do
+                Docker Desktop e da licença comercial que ele exige de empresas maiores.
+                O passo a passo está no{' '}
+                <a href="/instalacao.html" className="text-blue-400 hover:text-blue-300 underline underline-offset-2">
+                  guia de instalação
+                </a>.
+              </p>
             </div>
 
             {/* Verificação da assinatura. Num produto de segurança, "confie em

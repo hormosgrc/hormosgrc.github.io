@@ -91,6 +91,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
                   Edição Comunidade (Grátis)
                 </button>
               </li>
+              <li>
+                <a href="/instalacao.html" className="hover:text-white transition-colors">
+                  Guia de instalação e operação
+                </a>
+              </li>
               <li><a href="#planos" className="hover:text-white transition-colors">Planos & Preços</a></li>
               <li><a href="#auditores" className="hover:text-white transition-colors">Mentoria c/ Auditores Líderes</a></li>
               <li>
@@ -118,7 +123,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenCommunityModal
             >
               Política de Privacidade
             </a>
-            <span>Documentação Técnica</span>
+            {/* Também era um <span> morto, pelo mesmo motivo e ao lado do
+                outro. Agora leva ao guia de instalação e operação, que é a
+                documentação que quem chega aqui realmente procura. */}
+            <a
+              href="/instalacao.html"
+              className="hover:text-white transition-colors underline decoration-white/20 underline-offset-2"
+            >
+              Guia de Instalação
+            </a>
             <button
               onClick={scrollToTop}
               className="p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-white/10 transition-colors"

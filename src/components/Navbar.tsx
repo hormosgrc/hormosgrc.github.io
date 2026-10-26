@@ -27,6 +27,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenCommunityModal
   { label: 'Auditoria', href: '#auditores' },
     { label: 'Simulador', href: '#simulador' },
     { label: 'Planos', href: '#planos' },
+    // Único item que sai da página: o guia de instalação e operação. Fica no
+    // trilho principal porque quem decide avaliar o produto precisa achá-lo
+    // sem passar pelo modal.
+    { label: 'Instalação', href: '/instalacao.html' },
   ];
 
   return (
