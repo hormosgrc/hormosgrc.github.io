@@ -248,6 +248,25 @@
     marca. Essa checagem acontece <strong>antes</strong> de qualquer download.</p>
   </div>
 
+  <div class="caixa atencao">
+    <span class="rotulo">Tenha onde anotar — três credenciais nascem aqui</span>
+    <p>Uma instalação real travou no fim porque a senha do primeiro acesso não
+    foi anotada e a janela do instalador fechou. Tenha o gerenciador de senhas
+    (ou um papel) à mão <strong>antes</strong> de começar:</p>
+    <ol class="compacta">
+      <li><strong>Usuário e senha do Ubuntu/WSL</strong> — só no Windows. O
+      próprio Ubuntu pede no primeiro boot, e é essa senha que o
+      <code>sudo</code> vai cobrar depois. Não tem recuperação simples.</li>
+      <li><strong>Usuário e senha do primeiro acesso ao Hormos</strong> — o
+      instalador imprime no fim. Vale para <em>um</em> login.</li>
+      <li><strong>A senha que você definir no primeiro login</strong> — essa
+      passa a ser a de verdade, e <strong>não está em arquivo nenhum</strong>.
+      Se perder, a saída é a da <a href="#senha-perdida">seção 5</a>.</li>
+    </ol>
+    <p>As senhas internas (banco, console de login) são geradas sozinhas e ficam
+    no arquivo <code>.env</code> — você não precisa delas no dia a dia.</p>
+  </div>
+
   <h2 id="windows">2. Windows — o caminho recomendado</h2>
 
   <div class="caixa recomendado">
@@ -391,6 +410,26 @@ cd hormos
   Confira antes se a sua empresa se enquadra na exigência de assinatura
   comercial dele.</p>
 
+  <div class="caixa atencao">
+    <span class="rotulo">Dois terminais diferentes — e isto confunde todo mundo</span>
+    <p>No Windows há <strong>dois</strong> lugares para digitar comando, e colar
+    no lugar errado dá erro sem explicar por quê. Num relato de instalação real,
+    <code>wsl -d Ubuntu -u root</code> foi rodado <em>dentro</em> do Ubuntu e
+    devolveu <code>Command 'wsl' not found</code> — o comando estava certo, o
+    terminal é que era o outro.</p>
+    <p>A regra de bolso resolve quase tudo:</p>
+    <ul class="compacta">
+      <li>começa com <code>wsl</code> → <strong>PowerShell do Windows</strong>
+      (menu Iniciar → "PowerShell")</li>
+      <li>começa com <code>docker</code>, <code>cd</code>, <code>sudo</code> ou
+      <code>./</code> → <strong>aplicativo Ubuntu</strong> (menu Iniciar →
+      "Ubuntu")</li>
+    </ul>
+    <p>Como saber onde você está: o PowerShell mostra um caminho começando com
+    <code>C:\</code>; o Ubuntu mostra algo como
+    <code>usuario@maquina:~$</code>.</p>
+  </div>
+
   <h2 id="linux">3. Linux (Ubuntu/Debian)</h2>
 
   <div class="cmd"><pre>git clone https://github.com/hormosgrc/hormos.git
@@ -443,6 +482,36 @@ cd hormos
   <strong>Windows</strong> — é lá que o navegador roda. Se mesmo assim o aviso
   aparecer, <strong>feche o navegador por completo</strong> (todas as janelas) e
   abra de novo: ele relê os certificados ao iniciar.</p>
+
+  <h3 id="senha-perdida">Perdeu a senha?</h3>
+
+  <p><strong>Antes do primeiro login</strong>, ela ainda está no arquivo de
+  configuração — nada se perdeu:</p>
+
+  <div class="cmd"><code>grep MASTER_PASSWORD /opt/hormos/.env</code></div>
+
+  <p>No Windows esse arquivo vive <em>dentro</em> do WSL, não numa pasta do
+  Explorador. Do PowerShell:</p>
+
+  <div class="cmd"><code>wsl -d Ubuntu -u root grep MASTER_PASSWORD /opt/hormos/.env</code></div>
+
+  <p><strong>Depois do primeiro login</strong> essa senha não vale mais: a sua
+  substituiu a dela, e ela não fica guardada em lugar nenhum — nem para nós.
+  Nesse caso, redefina:</p>
+
+  <div class="cmd"><code>cd /opt/hormos &amp;&amp; ./scripts/redefinir-senha-admin.sh</code></div>
+
+  <p>Ele lista os usuários, pergunta qual e pede a senha nova (sem mostrá-la na
+  tela). Funciona offline, sem e-mail e sem suporte.</p>
+
+  <div class="caixa">
+    <span class="rotulo">Por que não há "Esqueci minha senha"</span>
+    <p>O botão de recuperação por e-mail exigiria que o appliance tivesse um
+    servidor de e-mail configurado e falasse com a internet. Ele não fala — por
+    desenho, depois de instalado nada sai da sua rede. Trocar isso por um botão
+    de conveniência seria vender a premissa do produto por um atalho, então a
+    recuperação é local, pelo comando acima.</p>
+  </div>
 
   <p>Sem chave de licença, o sistema sobe na <strong>Edição Comunidade</strong>,
   com a ISO/IEC 27001 completa. Não há nada a ativar.</p>
@@ -624,6 +693,29 @@ memory=12GB</pre></div>
   <p>Depois rode <code>wsl --shutdown</code> no PowerShell e reabra o Ubuntu.
   Ou simplesmente instale <strong>sem o Analista IA</strong>: o motor semântico,
   que é o que faz a correlação, funciona inteiro sem ele.</p>
+
+  <h3>A instalação terminou, mas o https://localhost não abre</h3>
+
+  <p>Veja primeiro se alguma peça está reiniciando em laço — o
+  <code>docker ps</code> mostra o estado em <strong>STATUS</strong>, e
+  <code>Restarting</code> ali parece "no ar" para quem lê rápido:</p>
+
+  <div class="cmd"><code>cd /opt/hormos &amp;&amp; ./scripts/conferir-saude.sh</code></div>
+
+  <p>Ele confere as quatro coisas que precisam estar de pé e, quando alguma
+  falha, diz o comando do conserto. O caso mais comum é a tela de login não
+  subir porque o banco recusa a senha:</p>
+
+  <div class="cmd"><code>./scripts/realinhar-senha-banco.sh &amp;&amp; docker restart sgsi_keycloak</code></div>
+
+  <div class="caixa">
+    <span class="rotulo">Por que isso acontece</span>
+    <p>Se o Hormos já foi instalado nesta máquina antes, o banco de dados
+    continuou guardado — e guardou também a senha daquela instalação. Uma
+    instalação nova gera uma senha nova, que o banco antigo não reconhece. O
+    comando acima realinha as duas. (Os dados ficam preservados de propósito:
+    é o mesmo desenho que impede perder o SGSI ao mover a pasta.)</p>
+  </div>
 
   <h3>Nada disso resolveu</h3>
   <p>Escreva para <a href="mailto:hormosgrc@gmail.com">hormosgrc@gmail.com</a>
