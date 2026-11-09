@@ -256,10 +256,9 @@
     <ol class="compacta">
       <li><strong>Usuário e senha do Ubuntu/WSL</strong> — só no Windows, e
       <strong>o instalador cria sozinho</strong>: usuário <code>hormos</code>,
-      com senha gerada, impressa no fim. É a senha que o <code>sudo</code>
-      cobra dentro do Ubuntu. <strong>Essa é recuperável</strong> — veja a
-      <a href="#senha-ubuntu">seção 5</a>. Você não precisa inventar nada, e
-      não vai aparecer nenhum <em>"Enter new UNIX username"</em>.</li>
+      com senha gerada. É a senha que o <code>sudo</code> cobra dentro do
+      Ubuntu. Você não precisa inventar nada, e não vai aparecer nenhum
+      <em>"Enter new UNIX username"</em>.</li>
       <li><strong>Usuário e senha do primeiro acesso ao Hormos</strong> — o
       instalador imprime no fim. Vale para <em>um</em> login.</li>
       <li><strong>A senha que você definir no primeiro login</strong> — essa
@@ -268,6 +267,14 @@
     </ol>
     <p>As senhas internas (banco, console de login) são geradas sozinhas e ficam
     no arquivo <code>.env</code> — você não precisa delas no dia a dia.</p>
+    <p><strong>No Windows você não precisa anotar da tela.</strong> No fim da
+    instalação o <code>install.bat</code> grava um arquivo na sua pasta
+    <strong>Documentos</strong>:</p>
+    <div class="cmd"><pre>Documentos\Hormos - usuario e senha.txt</pre></div>
+    <p>Ele traz as duas credenciais — a do Ubuntu e a do primeiro acesso ao
+    Hormos — e também como recuperar cada uma. Guarde as senhas no seu
+    gerenciador e <strong>apague o arquivo depois</strong>: ele tem senha em
+    texto aberto, e quem abrir aquele computador lê.</p>
   </div>
 
   <h2 id="windows">2. Windows — o caminho recomendado</h2>
@@ -694,6 +701,13 @@ docker compose -p sgsi-appliance-core start</pre></div>
   de permissão. A partir da versão seguinte ele para, explica, e oferece reiniciar
   e continuar sozinho. Se você viveu esse problema, basta reiniciar e rodar de
   novo — nada do que já foi baixado se perde.</p>
+
+  <h3>Onde estão minhas senhas?</h3>
+  <p>No Windows, num arquivo de texto na sua pasta <strong>Documentos</strong>,
+  gravado pelo próprio instalador:</p>
+  <div class="cmd"><pre>Documentos\Hormos - usuario e senha.txt</pre></div>
+  <p>Se você já apagou — como o próprio arquivo recomenda — as duas se
+  recuperam pelos comandos das duas seções seguintes.</p>
 
   <h3 id="senha-ubuntu">Perdi a senha do Ubuntu (a do <code>sudo</code>)</h3>
   <p>Essa tem recuperação, e é simples. No <strong>PowerShell</strong>:</p>
