@@ -254,9 +254,12 @@
     foi anotada e a janela do instalador fechou. Tenha o gerenciador de senhas
     (ou um papel) à mão <strong>antes</strong> de começar:</p>
     <ol class="compacta">
-      <li><strong>Usuário e senha do Ubuntu/WSL</strong> — só no Windows. O
-      próprio Ubuntu pede no primeiro boot, e é essa senha que o
-      <code>sudo</code> vai cobrar depois. Não tem recuperação simples.</li>
+      <li><strong>Usuário e senha do Ubuntu/WSL</strong> — só no Windows, e
+      <strong>o instalador cria sozinho</strong>: usuário <code>hormos</code>,
+      com senha gerada, impressa no fim. É a senha que o <code>sudo</code>
+      cobra dentro do Ubuntu. <strong>Essa é recuperável</strong> — veja a
+      <a href="#senha-ubuntu">seção 5</a>. Você não precisa inventar nada, e
+      não vai aparecer nenhum <em>"Enter new UNIX username"</em>.</li>
       <li><strong>Usuário e senha do primeiro acesso ao Hormos</strong> — o
       instalador imprime no fim. Vale para <em>um</em> login.</li>
       <li><strong>A senha que você definir no primeiro login</strong> — essa
@@ -317,10 +320,23 @@
       para habilitar o WSL e registrar o certificado.</p>
     </li>
     <li>
-      <p><strong>Se o WSL ainda não existia na máquina, o instalador vai pedir
-      para reiniciar o Windows.</strong> Reinicie e execute o
-      <code>install.bat</code> de novo — ele continua de onde parou, nada se
-      perde.</p>
+      <p><strong>Se o Windows precisar reiniciar, o instalador para e pergunta.</strong>
+      Isso não é opcional nem é falha: ao instalar o WSL, o Windows deixa os
+      recursos pendentes, e eles só passam a valer no próximo boot. Seguir em
+      frente dali faz tudo adiante falhar com <em>permissão negada</em>, mesmo
+      rodando como administrador.</p>
+      <p>Você escolhe:</p>
+      <ul>
+        <li><strong>Reiniciar agora</strong> — o instalador agenda a própria
+        continuação, a máquina reinicia e, ao voltar, a instalação <em>recomeça
+        sozinha</em> de onde parou. O agendamento é temporário e é apagado
+        quando o Hormos fica no ar.</li>
+        <li><strong>Reiniciar depois</strong> (responda <code>n</code>) — reinicie
+        quando quiser e execute o <code>install.bat</code> de novo. Ele detecta
+        o que já está instalado e <strong>não baixa o Ubuntu outra vez</strong>.</li>
+      </ul>
+      <p>Nos dois caminhos nada se perde, e rodar o instalador mais de uma vez
+      é seguro.</p>
     </li>
     <li>
       <p>Espere. Na primeira vez ele baixa o Ubuntu, o Docker e a imagem do
@@ -665,6 +681,47 @@ docker compose down</pre></div>
   <p>Se ainda assim não voltarem, confira o estado e ligue:</p>
   <div class="cmd"><pre>docker compose -p sgsi-appliance-core ps
 docker compose -p sgsi-appliance-core start</pre></div>
+
+  <h3>No Windows: depois de instalar o Ubuntu, tudo dá "permissão negada"</h3>
+  <p>É <strong>reinício pendente</strong>, e não falta de privilégio — acontece
+  mesmo executando como administrador. O Windows deixa os recursos do WSL em
+  estado pendente até o próximo boot; qualquer comando para dentro do WSL falha
+  antes disso.</p>
+  <p><strong>Reinicie o Windows e execute o <code>install.bat</code> de novo.</strong>
+  Ele detecta o que já está instalado e não baixa o Ubuntu outra vez.</p>
+  <p>Versões do instalador até a <strong>2.2.8</strong> seguiam em frente nesse
+  ponto em vez de pedir o reinício, e era isso que produzia a enxurrada de erros
+  de permissão. A partir da versão seguinte ele para, explica, e oferece reiniciar
+  e continuar sozinho. Se você viveu esse problema, basta reiniciar e rodar de
+  novo — nada do que já foi baixado se perde.</p>
+
+  <h3 id="senha-ubuntu">Perdi a senha do Ubuntu (a do <code>sudo</code>)</h3>
+  <p>Essa tem recuperação, e é simples. No <strong>PowerShell</strong>:</p>
+  <div class="cmd"><pre>wsl -d Ubuntu -u root cat /root/.senha-ubuntu</pre></div>
+  <p>O usuário é <code>hormos</code>. Ele foi criado pelo instalador, está nos
+  grupos <code>sudo</code> e <code>docker</code>, e é o usuário padrão de quem
+  abre o aplicativo <strong>Ubuntu</strong>. Rodar o instalador de novo
+  <strong>não troca</strong> essa senha.</p>
+  <p>Não confunda com a senha do <strong>Hormos</strong>, que é outra coisa: a
+  do Ubuntu é do sistema operacional, a do Hormos é do portal em
+  <code>https://localhost</code>.</p>
+
+  <h3>No Windows: "Falha catastrófica" / <code>Wsl/Service/E_UNEXPECTED</code></h3>
+  <p>Acontece quando a distribuição ficou <em>registrada</em> mas com a
+  instalação pela metade — o Windows a lista em <code>wsl -l -v</code>, e
+  qualquer comando para dentro dela falha. Em geral é resto de uma instalação
+  interrompida.</p>
+  <p><strong>Rode o <code>install.bat</code> de novo:</strong> ele tenta três
+  consertos em ordem, sozinho — atualizar o WSL, concluir o primeiro uso da
+  distribuição, e por último apagar e reinstalar. O terceiro
+  <strong>pergunta antes</strong>, porque apaga o Ubuntu e tudo dentro dele.</p>
+  <p>Se preferir fazer à mão, no PowerShell como administrador:</p>
+  <div class="cmd"><pre>wsl --update
+wsl --shutdown
+wsl --unregister Ubuntu</pre></div>
+  <p>⚠️ O <code>--unregister</code> apaga o Ubuntu <strong>sem lixeira</strong>,
+  com tudo que estiver dentro. Depois rode o <code>install.bat</code>, que
+  instala tudo de novo do zero.</p>
 
   <h3>"permission denied" ao rodar docker</h3>
   <p>Você está no grupo <code>docker</code>, mas o terminal é anterior a isso —
